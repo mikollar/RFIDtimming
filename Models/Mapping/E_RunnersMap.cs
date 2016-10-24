@@ -21,6 +21,10 @@ namespace RFIDTimming.Models.Mapping
                 .IsFixedLength()
                 .HasMaxLength(100);
 
+            this.Property(t => t.StartNumber)
+                .IsRequired()
+                .HasMaxLength(10);
+
             this.Property(t => t.CategoryID)
                 .IsRequired()
                 .IsFixedLength()

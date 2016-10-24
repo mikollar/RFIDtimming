@@ -13,12 +13,10 @@ namespace RFIDTimming.Models.Mapping
             // Properties
             this.Property(t => t.BibNumber)
                 .IsRequired()
-                .IsFixedLength()
                 .HasMaxLength(10);
 
             this.Property(t => t.TagID)
                 .IsRequired()
-                .IsFixedLength()
                 .HasMaxLength(100);
 
             // Table & Column Mappings

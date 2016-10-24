@@ -10,6 +10,8 @@ namespace RFIDTimming.Models
         public string Firstname { get; set; }
         public string Surname { get; set; }
 
+        public string StartNumber { get; set; }
+
         public string CategoryID { get; set; }
     }
 }
