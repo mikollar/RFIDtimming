@@ -8,7 +8,7 @@ namespace RFIDTimming.Models.Mapping
         public E_NumberTagMap()
         {
             // Primary Key
-            this.HasKey(t => new { t.BibNumber, t.ValidFrom });
+            this.HasKey(t => new { t.BibNumber });
 
             // Properties
             this.Property(t => t.BibNumber)
@@ -22,7 +22,7 @@ namespace RFIDTimming.Models.Mapping
             // Table & Column Mappings
             this.ToTable("E_NumberTag");
             this.Property(t => t.BibNumber).HasColumnName("BibNumber");
-            this.Property(t => t.ValidFrom).HasColumnName("ValidFrom");
+        //    this.Property(t => t.ValidFrom).HasColumnName("ValidFrom");
             this.Property(t => t.TagID).HasColumnName("TagID");
         }
     }

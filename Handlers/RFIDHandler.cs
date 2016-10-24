@@ -1,16 +1,25 @@
 ﻿using Impinj.OctaneSdk;
+using RFIDTimming.Data;
 using RFIDTimming.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using RFIDTimming.Enums;
 
 namespace RFIDTimming.Handlers
 {
-
+   
     class RFIDHandler : BaseHandler
     {
+        Enums.Enums.RFIDMode RFIDMode = Enums.Enums.RFIDMode.OFF;  
+
+        public RFIDHandler(E_Events ev, Context context)
+            : base(ev != null ? (int?)ev.EventID : null, context)
+        {
+        }
+
         // Create an instance of the ImpinjReader class.
         static ImpinjReader reader = new ImpinjReader();
 
@@ -48,7 +57,7 @@ namespace RFIDTimming.Handlers
         /// <returns></returns>
         public List<E_NumberTag> GetStartNumbers()
         {
-           return this.Context.E_NumberTag.Where(x => x.ValidFrom <= DateTime.Now).OrderBy(o => o.BibNumber).ToList();
+           return this.Context.E_NumberTag.OrderBy(o => o.BibNumber).ToList();
         }
     }
 }
