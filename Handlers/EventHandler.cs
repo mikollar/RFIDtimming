@@ -14,16 +14,13 @@ namespace RFIDTimming.Handlers
     class EventsHandler : BaseHandler
     {
         E_Events ActiveEvent = null;
-        Form1 MainForm = null;
 
-        public EventsHandler(E_Events ev, Form1 form) : base(ev != null ? (int?)ev.EventID : null)
+        public EventsHandler(E_Events ev) : base(ev != null ? (int?)ev.EventID : null)
         {
-            this.MainForm = form;
         }
 
-        public EventsHandler(int? eventID, Context context, , Form1 form) : base(eventID, context)
+        public EventsHandler(int? eventID, Context context) : base(eventID, context)
         {
-            this.MainForm = form;
         }
 
         /// <summary>
@@ -34,6 +31,16 @@ namespace RFIDTimming.Handlers
         public E_Events GetEvent()
         {
             return this.Context.E_Events.FirstOrDefault(x => x.EventID == this.ActiveEventID);
+        }
+
+        /// <summary>
+        /// Return active event
+        /// </summary>
+        /// <returns></returns>
+        public E_Events GetActiveEvent()
+        {
+            return this.ActiveEvent;
+
         }
 
         /// <summary>
@@ -102,8 +109,6 @@ namespace RFIDTimming.Handlers
             this.ActiveEventID = eventID;
             // get event from DB
            this.ActiveEvent = this.GetEvent();
-            // set tab
-            this.MainForm.ta
         }
 
     }

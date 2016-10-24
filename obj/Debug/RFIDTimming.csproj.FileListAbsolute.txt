@@ -18,3 +18,18 @@ C:\Users\miro\Documents\Visual Studio 2015\Projects\RFIDTimming\RFIDTimming\bin\
 C:\Users\miro\Documents\Visual Studio 2015\Projects\RFIDTimming\RFIDTimming\bin\Debug\Newtonsoft.Json.dll
 C:\Users\miro\Documents\Visual Studio 2015\Projects\RFIDTimming\RFIDTimming\bin\Debug\NGettext.dll
 C:\Users\miro\Documents\Visual Studio 2015\Projects\RFIDTimming\RFIDTimming\bin\Debug\Xwt.dll
+C:\Users\mkollar\Source\Repos\RFIDtimming\bin\Debug\RFIDTimming.exe.config
+C:\Users\mkollar\Source\Repos\RFIDtimming\obj\Debug\RFIDTimming.exe
+C:\Users\mkollar\Source\Repos\RFIDtimming\obj\Debug\RFIDTimming.pdb
+C:\Users\mkollar\Source\Repos\RFIDtimming\bin\Debug\RFIDTimming.exe
+C:\Users\mkollar\Source\Repos\RFIDtimming\bin\Debug\RFIDTimming.pdb
+C:\Users\mkollar\Source\Repos\RFIDtimming\bin\Debug\Impinj.OctaneSdk.dll
+C:\Users\mkollar\Source\Repos\RFIDtimming\bin\Debug\Newtonsoft.Json.dll
+C:\Users\mkollar\Source\Repos\RFIDtimming\bin\Debug\LLRP.Impinj.dll
+C:\Users\mkollar\Source\Repos\RFIDtimming\bin\Debug\LLRP.dll
+C:\Users\mkollar\Source\Repos\RFIDtimming\bin\Debug\EntityFramework.xml
+C:\Users\mkollar\Source\Repos\RFIDtimming\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\mkollar\Source\Repos\RFIDtimming\obj\Debug\RFIDTimming.csprojResolveAssemblyReference.cache
+C:\Users\mkollar\Source\Repos\RFIDtimming\obj\Debug\RFIDTimming.Form1.resources
+C:\Users\mkollar\Source\Repos\RFIDtimming\obj\Debug\RFIDTimming.Properties.Resources.resources
+C:\Users\mkollar\Source\Repos\RFIDtimming\obj\Debug\RFIDTimming.csproj.GenerateResource.Cache

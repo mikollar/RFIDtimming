@@ -30,6 +30,8 @@
         {
             this.tabs = new System.Windows.Forms.TabControl();
             this.tabPageCompetition = new System.Windows.Forms.TabPage();
+            this.cmbEvents = new System.Windows.Forms.ComboBox();
+            this.btnOpenEvent = new System.Windows.Forms.Button();
             this.tabPageRunners = new System.Windows.Forms.TabPage();
             this.tabPageCategories = new System.Windows.Forms.TabPage();
             this.tabPageClubs = new System.Windows.Forms.TabPage();
@@ -39,8 +41,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tbxEventName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnOpenEvent = new System.Windows.Forms.Button();
-            this.cmbEvents = new System.Windows.Forms.ComboBox();
+            this.btnCloseEvent = new System.Windows.Forms.Button();
             this.tabs.SuspendLayout();
             this.tabPageCompetition.SuspendLayout();
             this.tabPageAddEvent.SuspendLayout();
@@ -71,6 +72,27 @@
             this.tabPageCompetition.TabIndex = 0;
             this.tabPageCompetition.Text = "Zvoľ pretek";
             this.tabPageCompetition.UseVisualStyleBackColor = true;
+            // 
+            // cmbEvents
+            // 
+            this.cmbEvents.DisplayMember = "EventName";
+            this.cmbEvents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEvents.FormattingEnabled = true;
+            this.cmbEvents.Location = new System.Drawing.Point(8, 29);
+            this.cmbEvents.Name = "cmbEvents";
+            this.cmbEvents.Size = new System.Drawing.Size(443, 21);
+            this.cmbEvents.TabIndex = 2;
+            this.cmbEvents.ValueMember = "EventID";
+            // 
+            // btnOpenEvent
+            // 
+            this.btnOpenEvent.Location = new System.Drawing.Point(376, 56);
+            this.btnOpenEvent.Name = "btnOpenEvent";
+            this.btnOpenEvent.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenEvent.TabIndex = 1;
+            this.btnOpenEvent.Text = "Otvor";
+            this.btnOpenEvent.UseVisualStyleBackColor = true;
+            this.btnOpenEvent.Click += new System.EventHandler(this.btnOpenEvent_Click);
             // 
             // tabPageRunners
             // 
@@ -104,6 +126,7 @@
             // 
             // tabPageAddEvent
             // 
+            this.tabPageAddEvent.Controls.Add(this.btnCloseEvent);
             this.tabPageAddEvent.Controls.Add(this.btnSaveEvent);
             this.tabPageAddEvent.Controls.Add(this.dtmEventDate);
             this.tabPageAddEvent.Controls.Add(this.label2);
@@ -163,26 +186,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Názov";
             // 
-            // btnOpenEvent
+            // btnCloseEvent
             // 
-            this.btnOpenEvent.Location = new System.Drawing.Point(376, 56);
-            this.btnOpenEvent.Name = "btnOpenEvent";
-            this.btnOpenEvent.Size = new System.Drawing.Size(75, 23);
-            this.btnOpenEvent.TabIndex = 1;
-            this.btnOpenEvent.Text = "Otvor";
-            this.btnOpenEvent.UseVisualStyleBackColor = true;
-            this.btnOpenEvent.Click += new System.EventHandler(this.btnOpenEvent_Click);
-            // 
-            // cmbEvents
-            // 
-            this.cmbEvents.DisplayMember = "EventName";
-            this.cmbEvents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEvents.FormattingEnabled = true;
-            this.cmbEvents.Location = new System.Drawing.Point(8, 29);
-            this.cmbEvents.Name = "cmbEvents";
-            this.cmbEvents.Size = new System.Drawing.Size(443, 21);
-            this.cmbEvents.TabIndex = 2;
-            this.cmbEvents.ValueMember = "EventID";
+            this.btnCloseEvent.Location = new System.Drawing.Point(288, 98);
+            this.btnCloseEvent.Name = "btnCloseEvent";
+            this.btnCloseEvent.Size = new System.Drawing.Size(75, 23);
+            this.btnCloseEvent.TabIndex = 6;
+            this.btnCloseEvent.Text = "Zatvor";
+            this.btnCloseEvent.UseVisualStyleBackColor = true;
+            this.btnCloseEvent.Click += new System.EventHandler(this.btnCloseEvent_Click);
             // 
             // Form1
             // 
@@ -216,6 +228,7 @@
         private System.Windows.Forms.Button btnSaveEvent;
         private System.Windows.Forms.Button btnOpenEvent;
         private System.Windows.Forms.ComboBox cmbEvents;
+        private System.Windows.Forms.Button btnCloseEvent;
     }
 }
 

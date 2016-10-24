@@ -24,19 +24,48 @@ namespace RFIDTimming
 
             dtmEventDate.CustomFormat = "dd.MM.yyyy H:mm";
 
-            // tab selected
+            // tab selected event
             tabs.Selected += Tabs_Selected;
+
+            // select open event tab
+            tabs.SelectTab(tabPageCompetition);
         }
 
+        /// <summary>
+        /// Tab select event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Tabs_Selected(object sender, TabControlEventArgs e)
         {
-           if(e.TabPage == tabPageCompetition)
+            // get active event
+            var activeEvent = evHandler.GetActiveEvent();
+
+            if(e.TabPage == tabPageCompetition)
             {
                 // get all events and set to events dropdown list
                 cmbEvents.DataSource = evHandler.GetEvents();
             }
+            if (e.TabPage == tabPageAddEvent)
+            {
+                if (activeEvent != null)
+                {
+                    tbxEventName.Text = activeEvent.EventName;
+                    dtmEventDate.Value = activeEvent.EventDateTime;
+                }
+                else
+                {
+                    tbxEventName.Text = "Novy pretek " + DateTime.Now.ToShortDateString();
+                    dtmEventDate.Value = DateTime.Now;
+                }
+            }
         }
 
+        /// <summary>
+        /// Form load
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
             //var dd = cnt.R_TagRead.ToList();
@@ -67,21 +96,24 @@ namespace RFIDTimming
             tabs.TabPages.Remove(tabPageClubs);
             tabs.TabPages.Remove(tabPageCompetition);
 
+            // event is opened
             if (evHandler.ActiveEventID != null)
             {
                 tabs.TabPages.Insert(0, tabPageRunners);
                 tabs.TabPages.Insert(1, tabPageCategories);
                 tabs.TabPages.Insert(2, tabPageClubs);
+
+                btnCloseEvent.Show();
+
+                tabPageAddEvent.Text = "Pretek";
             }
             else
             {
                 tabs.TabPages.Insert(0, tabPageCompetition);
+                btnCloseEvent.Hide();
+
+                tabPageAddEvent.Text = "Nový pretek";
             }
-        }
-
-        private void lstEvents_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         /// <summary>
@@ -95,6 +127,23 @@ namespace RFIDTimming
             evHandler.SetActiveEvent((int)cmbEvents.SelectedValue);
 
             this.ConfigUI();
+        }
+
+        /// <summary>
+        /// Close event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCloseEvent_Click(object sender, EventArgs e)
+        {
+            // clear active event
+            evHandler.SetActiveEvent(null);
+
+            // config UI
+            this.ConfigUI();
+
+            // select open event tab
+            tabs.SelectTab(tabPageCompetition);
         }
     }
 }
