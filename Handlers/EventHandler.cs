@@ -86,6 +86,7 @@ namespace RFIDTimming.Handlers
 
                 // set new event as active event
                 this.ActiveEventID = newEvent.EventID;
+                this.ActiveEvent = newEvent;
 
                 return newEvent;
             }

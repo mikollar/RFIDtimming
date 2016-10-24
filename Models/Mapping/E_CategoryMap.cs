@@ -11,6 +11,10 @@ namespace RFIDTimming.Models.Mapping
             this.HasKey(t => new { t.CategoryID, t.EventID });
 
             // Properties
+            this.Property(t => t.CategoryID)
+                .IsRequired()
+                .HasMaxLength(50);
+            // Properties
             this.Property(t => t.CategoryName)
                 .IsRequired()
                 .HasMaxLength(50);

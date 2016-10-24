@@ -9,5 +9,7 @@ namespace RFIDTimming.Models
         public Nullable<int> EventID { get; set; }
         public string Firstname { get; set; }
         public string Surname { get; set; }
+
+        public string CategoryID { get; set; }
     }
 }

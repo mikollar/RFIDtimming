@@ -21,6 +21,11 @@ namespace RFIDTimming.Models.Mapping
                 .IsFixedLength()
                 .HasMaxLength(100);
 
+            this.Property(t => t.CategoryID)
+                .IsRequired()
+                .IsFixedLength()
+                .HasMaxLength(50);
+
             // Table & Column Mappings
             this.ToTable("E_Runners");
             this.Property(t => t.RunnerID).HasColumnName("RunnerID");

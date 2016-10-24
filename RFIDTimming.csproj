@@ -80,6 +80,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Handlers\BaseHandler.cs" />
+    <Compile Include="Handlers\CategoriesHandler.cs" />
     <Compile Include="Handlers\EventHandler.cs" />
     <Compile Include="Handlers\RFIDHandler.cs" />
     <Compile Include="Handlers\StopWatchHandler.cs" />

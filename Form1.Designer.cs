@@ -42,9 +42,27 @@
             this.tbxEventName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCloseEvent = new System.Windows.Forms.Button();
+            this.tbxCatCatName = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.numCatLaps = new System.Windows.Forms.NumericUpDown();
+            this.numCatMinLapTime = new System.Windows.Forms.NumericUpDown();
+            this.numCatStartOffset = new System.Windows.Forms.NumericUpDown();
+            this.btnCatSave = new System.Windows.Forms.Button();
+            this.btnCatDelete = new System.Windows.Forms.Button();
+            this.btnCatNew = new System.Windows.Forms.Button();
+            this.tbxCatCode = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lstCategories = new System.Windows.Forms.ListBox();
             this.tabs.SuspendLayout();
             this.tabPageCompetition.SuspendLayout();
+            this.tabPageCategories.SuspendLayout();
             this.tabPageAddEvent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numCatLaps)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCatMinLapTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCatStartOffset)).BeginInit();
             this.SuspendLayout();
             // 
             // tabs
@@ -106,6 +124,20 @@
             // 
             // tabPageCategories
             // 
+            this.tabPageCategories.Controls.Add(this.lstCategories);
+            this.tabPageCategories.Controls.Add(this.tbxCatCode);
+            this.tabPageCategories.Controls.Add(this.label7);
+            this.tabPageCategories.Controls.Add(this.btnCatNew);
+            this.tabPageCategories.Controls.Add(this.btnCatDelete);
+            this.tabPageCategories.Controls.Add(this.btnCatSave);
+            this.tabPageCategories.Controls.Add(this.numCatStartOffset);
+            this.tabPageCategories.Controls.Add(this.numCatMinLapTime);
+            this.tabPageCategories.Controls.Add(this.numCatLaps);
+            this.tabPageCategories.Controls.Add(this.label6);
+            this.tabPageCategories.Controls.Add(this.label5);
+            this.tabPageCategories.Controls.Add(this.label4);
+            this.tabPageCategories.Controls.Add(this.tbxCatCatName);
+            this.tabPageCategories.Controls.Add(this.label3);
             this.tabPageCategories.Location = new System.Drawing.Point(4, 22);
             this.tabPageCategories.Name = "tabPageCategories";
             this.tabPageCategories.Padding = new System.Windows.Forms.Padding(3);
@@ -196,6 +228,132 @@
             this.btnCloseEvent.UseVisualStyleBackColor = true;
             this.btnCloseEvent.Click += new System.EventHandler(this.btnCloseEvent_Click);
             // 
+            // tbxCatCatName
+            // 
+            this.tbxCatCatName.Location = new System.Drawing.Point(376, 40);
+            this.tbxCatCatName.Name = "tbxCatCatName";
+            this.tbxCatCatName.Size = new System.Drawing.Size(284, 20);
+            this.tbxCatCatName.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(266, 43);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Názov";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(266, 74);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(32, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Kolá";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Location = new System.Drawing.Point(266, 110);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Min. čas kolo";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.Location = new System.Drawing.Point(266, 145);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(78, 13);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Posun štartu";
+            // 
+            // numCatLaps
+            // 
+            this.numCatLaps.Location = new System.Drawing.Point(376, 72);
+            this.numCatLaps.Name = "numCatLaps";
+            this.numCatLaps.Size = new System.Drawing.Size(65, 20);
+            this.numCatLaps.TabIndex = 7;
+            // 
+            // numCatMinLapTime
+            // 
+            this.numCatMinLapTime.Location = new System.Drawing.Point(376, 108);
+            this.numCatMinLapTime.Name = "numCatMinLapTime";
+            this.numCatMinLapTime.Size = new System.Drawing.Size(65, 20);
+            this.numCatMinLapTime.TabIndex = 8;
+            // 
+            // numCatStartOffset
+            // 
+            this.numCatStartOffset.Location = new System.Drawing.Point(376, 143);
+            this.numCatStartOffset.Name = "numCatStartOffset";
+            this.numCatStartOffset.Size = new System.Drawing.Size(65, 20);
+            this.numCatStartOffset.TabIndex = 9;
+            // 
+            // btnCatSave
+            // 
+            this.btnCatSave.Location = new System.Drawing.Point(585, 198);
+            this.btnCatSave.Name = "btnCatSave";
+            this.btnCatSave.Size = new System.Drawing.Size(75, 23);
+            this.btnCatSave.TabIndex = 10;
+            this.btnCatSave.Text = "Ulož";
+            this.btnCatSave.UseVisualStyleBackColor = true;
+            this.btnCatSave.Click += new System.EventHandler(this.btnCatSave_Click);
+            // 
+            // btnCatDelete
+            // 
+            this.btnCatDelete.Location = new System.Drawing.Point(401, 198);
+            this.btnCatDelete.Name = "btnCatDelete";
+            this.btnCatDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnCatDelete.TabIndex = 11;
+            this.btnCatDelete.Text = "Vymaž";
+            this.btnCatDelete.UseVisualStyleBackColor = true;
+            this.btnCatDelete.Click += new System.EventHandler(this.btnCatDelete_Click);
+            // 
+            // btnCatNew
+            // 
+            this.btnCatNew.Location = new System.Drawing.Point(493, 198);
+            this.btnCatNew.Name = "btnCatNew";
+            this.btnCatNew.Size = new System.Drawing.Size(75, 23);
+            this.btnCatNew.TabIndex = 12;
+            this.btnCatNew.Text = "Nový";
+            this.btnCatNew.UseVisualStyleBackColor = true;
+            this.btnCatNew.Click += new System.EventHandler(this.btnCatNew_Click);
+            // 
+            // tbxCatCode
+            // 
+            this.tbxCatCode.Location = new System.Drawing.Point(376, 6);
+            this.tbxCatCode.Name = "tbxCatCode";
+            this.tbxCatCode.Size = new System.Drawing.Size(284, 20);
+            this.tbxCatCode.TabIndex = 14;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label7.Location = new System.Drawing.Point(266, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(29, 13);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Kod";
+            // 
+            // lstCategories
+            // 
+            this.lstCategories.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lstCategories.FormattingEnabled = true;
+            this.lstCategories.Location = new System.Drawing.Point(3, 3);
+            this.lstCategories.Name = "lstCategories";
+            this.lstCategories.Size = new System.Drawing.Size(257, 472);
+            this.lstCategories.TabIndex = 15;
+            this.lstCategories.SelectedIndexChanged += new System.EventHandler(this.lstCategories_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -207,8 +365,13 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabs.ResumeLayout(false);
             this.tabPageCompetition.ResumeLayout(false);
+            this.tabPageCategories.ResumeLayout(false);
+            this.tabPageCategories.PerformLayout();
             this.tabPageAddEvent.ResumeLayout(false);
             this.tabPageAddEvent.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numCatLaps)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCatMinLapTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCatStartOffset)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -229,6 +392,20 @@
         private System.Windows.Forms.Button btnOpenEvent;
         private System.Windows.Forms.ComboBox cmbEvents;
         private System.Windows.Forms.Button btnCloseEvent;
+        private System.Windows.Forms.TextBox tbxCatCatName;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown numCatLaps;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown numCatStartOffset;
+        private System.Windows.Forms.NumericUpDown numCatMinLapTime;
+        private System.Windows.Forms.Button btnCatSave;
+        private System.Windows.Forms.Button btnCatNew;
+        private System.Windows.Forms.Button btnCatDelete;
+        private System.Windows.Forms.TextBox tbxCatCode;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ListBox lstCategories;
     }
 }
 

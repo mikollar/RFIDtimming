@@ -29,6 +29,9 @@ namespace RFIDTimming
 
             // select open event tab
             tabs.SelectTab(tabPageCompetition);
+
+            // hide delte category button
+            btnCatDelete.Hide();
         }
 
         /// <summary>
@@ -57,6 +60,16 @@ namespace RFIDTimming
                 {
                     tbxEventName.Text = "Novy pretek " + DateTime.Now.ToShortDateString();
                     dtmEventDate.Value = DateTime.Now;
+                }
+            }
+            if (e.TabPage == tabPageCategories)
+            {
+                if (activeEvent != null)
+                {
+                    this.ReloadCategories();
+                }
+                else
+                {
                 }
             }
         }
@@ -144,6 +157,85 @@ namespace RFIDTimming
 
             // select open event tab
             tabs.SelectTab(tabPageCompetition);
+        }
+
+
+        #region Categories
+        /// <summary>
+        /// Reload categories
+        /// </summary>
+        private void ReloadCategories()
+        {
+            lstCategories.DisplayMember = "CategoryName"; 
+            lstCategories.DataSource = new CategoriesHandler(evHandler.GetActiveEvent(), evHandler.Context).GetCategories();
+        }
+
+        /// <summary>
+        /// Save category button event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCatSave_Click(object sender, EventArgs e)
+        {
+            new CategoriesHandler(evHandler.GetActiveEvent(), evHandler.Context).CreateUpdateCategory(tbxCatCode.Text, tbxCatCatName.Text, (int)numCatLaps.Value, (int)numCatMinLapTime.Value, (int)numCatStartOffset.Value);
+            this.ReloadCategories();
+        }
+
+        /// <summary>
+        /// New category button event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCatNew_Click(object sender, EventArgs e)
+        {
+            tbxCatCatName.Text = string.Empty;
+            tbxCatCode.Text = string.Empty;
+            lstCategories.ClearSelected();
+        }
+
+        /// <summary>
+        /// Delete category button event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCatDelete_Click(object sender, EventArgs e)
+        {
+            if (lstCategories.SelectedItem != null)
+            {
+                var category = (E_Category)lstCategories.SelectedItem;
+
+                new CategoriesHandler(evHandler.GetActiveEvent(), evHandler.Context).DeleteCategory(category.CategoryID);
+
+                this.ReloadCategories();
+            }
+        }
+
+
+        #endregion
+
+        /// <summary>
+        /// Categories list selection changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lstCategories_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstCategories.SelectedItem != null)
+            {
+                var category = (E_Category)lstCategories.SelectedItem;
+
+                tbxCatCatName.Text = category.CategoryName;
+                tbxCatCode.Text = category.CategoryID;
+                numCatLaps.Value = category.Laps;
+                numCatMinLapTime.Value = category.MinLapTime;
+                numCatStartOffset.Value = category.OffsetStartTime;
+
+                btnCatDelete.Show();
+            }
+            else
+            {
+                btnCatDelete.Hide();
+            }
         }
     }
 }
