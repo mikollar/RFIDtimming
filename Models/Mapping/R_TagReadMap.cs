@@ -10,10 +10,13 @@ namespace RFIDTimming.Models.Mapping
             // Primary Key
             this.HasKey(t => new { t.ReadID, t.EventID });
 
+            this.Property(t => t.ReadID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
             // Properties
             this.Property(t => t.TagID)
                 .IsRequired()
-                .HasMaxLength(100);
+                .HasMaxLength(100)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             this.Property(t => t.UserData)
                 .HasMaxLength(255);

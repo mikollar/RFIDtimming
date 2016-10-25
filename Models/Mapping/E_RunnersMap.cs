@@ -12,13 +12,9 @@ namespace RFIDTimming.Models.Mapping
 
             // Properties
             this.Property(t => t.Firstname)
-                .IsRequired()
-                .IsFixedLength()
                 .HasMaxLength(100);
 
             this.Property(t => t.Surname)
-                .IsRequired()
-                .IsFixedLength()
                 .HasMaxLength(100);
 
             this.Property(t => t.StartNumber)
@@ -27,7 +23,6 @@ namespace RFIDTimming.Models.Mapping
 
             this.Property(t => t.CategoryID)
                 .IsRequired()
-                .IsFixedLength()
                 .HasMaxLength(50);
 
             // Table & Column Mappings

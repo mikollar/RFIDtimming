@@ -15,12 +15,19 @@ namespace RFIDTimming
     public partial class Form1 : Form
     {
         EventsHandler evHandler = null;
+        RFIDHandler rfidHandler = null;
 
         public Form1()
         {
             InitializeComponent();
 
             evHandler = new EventsHandler(null);
+            rfidHandler = new RFIDHandler(null, evHandler.Context);
+            // reload start numbers
+            dtgStartNumbers.DataSource = rfidHandler.GetStartNumbers();
+
+            cmbRFIDMode.DataSource = Enum.GetValues(typeof(RFIDTimming.Enums.Enums.RFIDMode));
+            cmbRFIDMode.SelectedValueChanged += CmbRFIDMode_SelectedValueChanged;
 
             dtmEventDate.CustomFormat = "dd.MM.yyyy H:mm";
 
@@ -34,6 +41,8 @@ namespace RFIDTimming
             btnCatDelete.Hide();
         }
 
+
+
         /// <summary>
         /// Tab select event
         /// </summary>
@@ -44,7 +53,7 @@ namespace RFIDTimming
             // get active event
             var activeEvent = evHandler.GetActiveEvent();
 
-            if(e.TabPage == tabPageCompetition)
+            if (e.TabPage == tabPageCompetition)
             {
                 // get all events and set to events dropdown list
                 cmbEvents.DataSource = evHandler.GetEvents();
@@ -60,6 +69,20 @@ namespace RFIDTimming
                 {
                     tbxEventName.Text = "Novy pretek " + DateTime.Now.ToShortDateString();
                     dtmEventDate.Value = DateTime.Now;
+                }
+            }
+            if (e.TabPage == tabPageRunners)
+            {
+                if (activeEvent != null)
+                {
+                    this.ReloadRunners();
+
+                    cmbRunnerCategory.DisplayMember = "CategoryName";
+                    cmbRunnerCategory.ValueMember = "CateogryID";
+                    cmbRunnerCategory.DataSource = new CategoriesHandler(this.evHandler.GetActiveEvent(), this.evHandler.Context).GetCategories();
+                }
+                else
+                {
                 }
             }
             if (e.TabPage == tabPageCategories)
@@ -94,7 +117,7 @@ namespace RFIDTimming
         private void btnSaveEvent_Click(object sender, EventArgs e)
         {
             // create or update event
-           evHandler.CreateUpdateEvent(tbxEventName.Text, dtmEventDate.Value);
+            evHandler.CreateUpdateEvent(tbxEventName.Text, dtmEventDate.Value);
             // config UI
             this.ConfigUI();
         }
@@ -126,6 +149,15 @@ namespace RFIDTimming
                 btnCloseEvent.Hide();
 
                 tabPageAddEvent.Text = "Nový pretek";
+            }
+
+            if (rfidHandler.IsRfidConnected())
+            {
+                btnConnectToRFID.Enabled = false;
+            }
+            else
+            {
+                btnConnectToRFID.Enabled = true;
             }
         }
 
@@ -166,7 +198,7 @@ namespace RFIDTimming
         /// </summary>
         private void ReloadCategories()
         {
-            lstCategories.DisplayMember = "CategoryName"; 
+            lstCategories.DisplayMember = "CategoryName";
             lstCategories.DataSource = new CategoriesHandler(evHandler.GetActiveEvent(), evHandler.Context).GetCategories();
         }
 
@@ -235,6 +267,216 @@ namespace RFIDTimming
             else
             {
                 btnCatDelete.Hide();
+            }
+        }
+
+        /// <summary>
+        /// Get selected RFID mode
+        /// </summary>
+        /// <returns></returns>
+        private RFIDTimming.Enums.Enums.RFIDMode GetSelectedRFIDMode()
+        {
+            RFIDTimming.Enums.Enums.RFIDMode mode;
+            Enum.TryParse<RFIDTimming.Enums.Enums.RFIDMode>(cmbRFIDMode.SelectedValue.ToString(), out mode);
+
+            return mode;
+        }
+
+        /// <summary>
+        /// Connect to RFID
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnConnectToRFID_Click(object sender, EventArgs e)
+        {
+            // init RFID
+            lblReadMessage.Text = rfidHandler.InitRFID(RFIDCallback);
+            // set RFID mode
+            rfidHandler.SetRfidMode(this.GetSelectedRFIDMode(), evHandler.GetActiveEvent(), (int)nmrFromStartNumber.Value);
+
+            this.ConfigUI();
+        }
+
+        /// <summary>
+        /// On change selected RFID mode
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CmbRFIDMode_SelectedValueChanged(object sender, EventArgs e)
+        {
+            // set RFID mode
+            rfidHandler.SetRfidMode(this.GetSelectedRFIDMode(), evHandler.GetActiveEvent(), (int)nmrFromStartNumber.Value);
+        }
+
+        /// <summary>
+        /// RFID call back
+        /// </summary>
+        /// <param name="rfidRead"></param>
+        /// <returns></returns>
+        private int RFIDCallback(RFIDRead rfidRead)
+        {
+            this.BeginInvoke(new MethodInvoker(delegate
+            {
+                tbxReadTag.Text = "";
+                tbxReadTime.Text = "";
+                tbxReadRunner.Text = "";
+                tbxReadTime.Text = "";
+                tbxReadStartNumber.Text = "";
+                lblReadMessage.Text = "";
+
+                if (rfidRead != null)
+                {
+                    lblReadMessage.Text = rfidRead.Error;
+
+                    tbxReadStartNumber.Text = rfidRead.StartNumber;
+
+                    if (rfidRead.Tag != null)
+                    {
+                        tbxReadTag.Text = rfidRead.Tag.TagID;
+                        tbxReadTime.Text = rfidRead.Tag.ReadTime.ToString("h\\:mm\\:ss");
+                    }
+
+                    if (rfidRead.Runner != null)
+                    {
+                        tbxReadRunner.Text = rfidRead.Runner.Surname + " " + rfidRead.Runner.Firstname;
+                        tbxReadTime.Text = rfidRead.Tag.ReadTime.ToString("h\\:mm\\:ss");
+                    }
+                }
+
+                // reload start numbers
+                if (rfidHandler.GetRfidMode() == Enums.Enums.RFIDMode.ASSIGN)
+                {
+                    dtgStartNumbers.DataSource = rfidHandler.GetStartNumbers();
+                }
+
+            }));
+            return 0;
+        }
+
+
+        #region Runners
+
+        /// <summary>
+        /// Get selected runner
+        /// </summary>
+        /// <returns></returns>
+        private E_Runners GetSelectedRunner()
+        {
+            E_Runners runner = null;
+            if (lstRunners.SelectedItem != null)
+            {
+                 runner = (E_Runners)lstRunners.SelectedItem;
+            }
+
+            return runner;
+        }
+    
+        /// <summary>
+        /// Reload runners
+        /// </summary>
+        private void ReloadRunners()
+        {
+            lstRunners.DisplayMember = "Surname";
+            lstRunners.DataSource = new RunnersHandler(evHandler.GetActiveEvent(), evHandler.Context).GetRunners();
+        }
+
+        // On change selected runner
+        private void lstRunners_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           var runner = this.GetSelectedRunner();
+            if(runner != null)
+            {
+                runner = new RunnersHandler(evHandler.GetActiveEvent(), evHandler.Context).GetRunner(runner.RunnerID, true);
+
+                if (runner != null)
+                {
+                    tbxRunnerName.Text = runner.Surname;
+                    tbxRunnerStartNumber.Text = runner.StartNumber;
+                    cmbRunnerCategory.SelectedValue = runner.CategoryID;
+                    tbxRunnerResultTime.Text = runner.ResultTime.HasValue ? runner.ResultTime.Value.ToString("h\\:mm\\:ss") : "";
+                }
+            }
+            else
+            {
+                this.ClearRunnerForm();
+            }
+        }
+
+        /// <summary>
+        /// Clear runner form
+        /// </summary>
+        private void ClearRunnerForm()
+        {
+            tbxRunnerName.Text = string.Empty;
+            tbxRunnerStartNumber.Text = string.Empty;
+            tbxRunnerResultTime.Text = string.Empty;
+
+            // clear selected runner
+            lstRunners.ClearSelected();
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Create/Update runner
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRunnerSave_Click(object sender, EventArgs e)
+        {
+            int runnerID = 0;
+            var selectedRunner = this.GetSelectedRunner();
+            if(selectedRunner != null)
+            {
+                runnerID = selectedRunner.RunnerID;
+            }
+
+            var runnerCategory = (E_Category)cmbRunnerCategory.SelectedItem;
+
+            if (runnerCategory == null)
+            {
+                MessageBox.Show("Vyberte kategoriu",
+                                "Chyba",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1);
+
+                return;
+            }
+
+            // save to DB
+            var msg = new RunnersHandler(evHandler.GetActiveEvent(), evHandler.Context).CreateUpdateRunner(runnerID, tbxRunnerName.Text, runnerCategory.CategoryID, "", tbxRunnerStartNumber.Text);
+            this.ReloadRunners();
+
+            if(!string.IsNullOrEmpty(msg))
+            {
+                MessageBox.Show(msg,
+                                "Chyba",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1);
+            }
+        }
+
+        // Clear form to add new runner
+        private void btnNewRunner_Click(object sender, EventArgs e)
+        {
+            this.ClearRunnerForm();
+        }
+
+        /// <summary>
+        /// Delete runner
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDeleteRunner_Click(object sender, EventArgs e)
+        {
+            var runner = this.GetSelectedRunner();
+            if (runner != null)
+            {
+                new RunnersHandler(evHandler.GetActiveEvent(), evHandler.Context).DeleteRunner(runner.RunnerID);
+
+                this.ReloadRunners();
             }
         }
     }

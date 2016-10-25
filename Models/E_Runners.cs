@@ -13,5 +13,8 @@ namespace RFIDTimming.Models
         public string StartNumber { get; set; }
 
         public string CategoryID { get; set; }
+
+        public TimeSpan? FinishTime { get; set; }
+        public TimeSpan? ResultTime { get; set; }
     }
 }

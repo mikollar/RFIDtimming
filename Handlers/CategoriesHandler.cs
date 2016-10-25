@@ -28,7 +28,7 @@ namespace RFIDTimming.Handlers
         /// <returns></returns>
         public List<E_Category> GetCategories()
         {
-            return this.Context.E_Category.Where(x => x.EventID == this.ActiveEventID).OrderBy(o => o.CategoryName).ToList();
+            return this.Context.E_Category.AsNoTracking().Where(x => x.EventID == this.ActiveEventID).OrderBy(o => o.CategoryName).ToList();
         }
 
         /// <summary>

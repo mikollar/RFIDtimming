@@ -9,6 +9,8 @@ namespace RFIDTimming.Models
         public int EventID { get; set; }
         public string TagID { get; set; }
         public string UserData { get; set; }
-        public System.DateTime ReadTime { get; set; }
+        public TimeSpan ReadTime { get; set; }
+
+        public int Antenna { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace RFIDTimming.Enums
         {
             OFF,
             ASSIGN,
+            TEST,
             READ
         }
     }
