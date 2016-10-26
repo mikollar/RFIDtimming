@@ -1,4 +1,5 @@
-﻿using RFIDTimming.Data;
+﻿using Microsoft.Reporting.WinForms;
+using RFIDTimming.Data;
 using RFIDTimming.Handlers;
 using RFIDTimming.Models;
 using System;
@@ -96,6 +97,16 @@ namespace RFIDTimming
                 {
                 }
             }
+            if (e.TabPage == tabResults)
+            {
+                if (activeEvent != null)
+                {
+                    this.ShowReports();
+                }
+                else
+                {
+                }
+            }
         }
 
         /// <summary>
@@ -108,6 +119,7 @@ namespace RFIDTimming
             //var dd = cnt.R_TagRead.ToList();
             // config UI
             this.ConfigUI();
+            
         }
 
         /// <summary>
@@ -481,6 +493,35 @@ namespace RFIDTimming
 
                 this.ReloadRunners();
             }
+        }
+
+        private void ShowReports()
+        {
+
+            List<ResultLap> myPeople = new List<ResultLap>();
+            myPeople.Add(new ResultLap() { Name = "John", Category = "Doe" });
+            myPeople.Add(new ResultLap() { Name = "Jane", Category = "Doe" });
+            myPeople.Add(new ResultLap() { Name = "Jerry", Category = "Smithers" });
+
+            this.reportViewer.LocalReport.ReportPath = "Reports\\Report1.rdlc";
+
+            this.reportViewer.LocalReport.ReportEmbeddedResource = "ReportViewer.Report1.rdlc";
+
+            ReportDataSource rds = new ReportDataSource("DataSet1", myPeople);
+           
+           reportViewer.LocalReport.DataSources.Clear();
+           reportViewer.LocalReport.DataSources.Add(rds);
+
+            string eventName = string.Empty;
+            var ev = evHandler.GetActiveEvent();
+            if(ev != null)
+            {
+                eventName = ev.EventName;
+            }
+           ReportParameter rp = new ReportParameter("EventName", eventName);
+           reportViewer.LocalReport.SetParameters(new ReportParameter[] { rp });
+
+            this.reportViewer.RefreshReport();
         }
     }
 }

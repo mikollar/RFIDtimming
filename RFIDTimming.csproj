@@ -47,6 +47,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\Impinj.OctaneSdk.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="MySql.Data">
       <HintPath>..\..\..\..\..\Desktop\LlrpReader\lib\MySql.Data.dll</HintPath>
     </Reference>
@@ -59,6 +61,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -67,6 +70,8 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Reporting, Version=10.2.16.914, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
+    <Reference Include="Telerik.ReportViewer.WinForms, Version=10.2.16.914, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
     <Reference Include="Xwt">
       <HintPath>..\..\..\..\..\Desktop\LlrpReader\lib\Xwt.dll</HintPath>
     </Reference>
@@ -95,6 +100,7 @@
     <Compile Include="Models\Mapping\E_NumberTagMap.cs" />
     <Compile Include="Models\Mapping\E_RunnersMap.cs" />
     <Compile Include="Models\Mapping\R_TagReadMap.cs" />
+    <Compile Include="Models\ResultLap.cs" />
     <Compile Include="Models\RFIDRead.cs" />
     <Compile Include="Models\R_TagRead.cs" />
     <Compile Include="Models\timmingContext.cs" />
@@ -103,6 +109,7 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -112,11 +119,21 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Reports\Report1.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\RFIDTimming.Models.E_Category.datasource" />
+    <None Include="Properties\DataSources\RFIDTimming.Models.E_Events.datasource" />
     <None Include="Properties\DataSources\RFIDTimming.Models.E_NumberTag.datasource" />
+    <None Include="Properties\DataSources\RFIDTimming.Models.E_Runners.datasource" />
+    <None Include="Properties\DataSources\RFIDTimming.Models.ResultLap.datasource" />
+    <None Include="Properties\DataSources\RFIDTimming.Models.RFIDRead.datasource" />
+    <None Include="Properties\DataSources\RFIDTimming.Models.R_TagRead.datasource" />
+    <None Include="Properties\DataSources\RFIDTimming.Models.timmingContext.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
