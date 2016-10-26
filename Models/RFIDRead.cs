@@ -5,6 +5,7 @@ using System.Text;
 
 namespace RFIDTimming.Models
 {
+
     class RFIDRead
     {
         public E_Runners Runner { get; set; }
@@ -14,4 +15,6 @@ namespace RFIDTimming.Models
 
         public string Error { get; set; }
     }
+
+   
 }

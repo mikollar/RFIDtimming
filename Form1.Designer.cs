@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tabs = new System.Windows.Forms.TabControl();
             this.tabPageCompetition = new System.Windows.Forms.TabPage();
             this.cmbEvents = new System.Windows.Forms.ComboBox();
@@ -90,13 +89,11 @@
             this.nmrFromStartNumber = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.dtgStartNumbers = new System.Windows.Forms.DataGridView();
-            this.bibNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tagIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.eNumberTagBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.eNumberTagBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tabResults = new System.Windows.Forms.TabPage();
+            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.tabs.SuspendLayout();
             this.tabPageCompetition.SuspendLayout();
             this.tabPageRunners.SuspendLayout();
@@ -109,8 +106,7 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrFromStartNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgStartNumbers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eNumberTagBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eNumberTagBindingSource)).BeginInit();
+            this.tabResults.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabs
@@ -121,6 +117,7 @@
             this.tabs.Controls.Add(this.tabPageClubs);
             this.tabs.Controls.Add(this.tabPageAddEvent);
             this.tabs.Controls.Add(this.tabPageStartNumbers);
+            this.tabs.Controls.Add(this.tabResults);
             this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabs.Location = new System.Drawing.Point(0, 0);
             this.tabs.Name = "tabs";
@@ -743,32 +740,11 @@
             // 
             this.dtgStartNumbers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.dtgStartNumbers.AutoGenerateColumns = false;
             this.dtgStartNumbers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgStartNumbers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.bibNumberDataGridViewTextBoxColumn,
-            this.tagIDDataGridViewTextBoxColumn});
-            this.dtgStartNumbers.DataSource = this.eNumberTagBindingSource1;
             this.dtgStartNumbers.Location = new System.Drawing.Point(-4, 0);
             this.dtgStartNumbers.Name = "dtgStartNumbers";
             this.dtgStartNumbers.Size = new System.Drawing.Size(396, 474);
             this.dtgStartNumbers.TabIndex = 26;
-            // 
-            // bibNumberDataGridViewTextBoxColumn
-            // 
-            this.bibNumberDataGridViewTextBoxColumn.DataPropertyName = "BibNumber";
-            this.bibNumberDataGridViewTextBoxColumn.HeaderText = "BibNumber";
-            this.bibNumberDataGridViewTextBoxColumn.Name = "bibNumberDataGridViewTextBoxColumn";
-            // 
-            // tagIDDataGridViewTextBoxColumn
-            // 
-            this.tagIDDataGridViewTextBoxColumn.DataPropertyName = "TagID";
-            this.tagIDDataGridViewTextBoxColumn.HeaderText = "TagID";
-            this.tagIDDataGridViewTextBoxColumn.Name = "tagIDDataGridViewTextBoxColumn";
-            // 
-            // eNumberTagBindingSource1
-            // 
-            this.eNumberTagBindingSource1.DataSource = typeof(RFIDTimming.Models.E_NumberTag);
             // 
             // button1
             // 
@@ -797,9 +773,26 @@
             this.button3.Text = "Ulož";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // eNumberTagBindingSource
+            // tabResults
             // 
-            this.eNumberTagBindingSource.DataSource = typeof(RFIDTimming.Models.E_NumberTag);
+            this.tabResults.Controls.Add(this.reportViewer);
+            this.tabResults.Location = new System.Drawing.Point(4, 22);
+            this.tabResults.Name = "tabResults";
+            this.tabResults.Padding = new System.Windows.Forms.Padding(3);
+            this.tabResults.Size = new System.Drawing.Size(1172, 474);
+            this.tabResults.TabIndex = 6;
+            this.tabResults.Text = "Zoznamy";
+            this.tabResults.UseVisualStyleBackColor = true;
+            // 
+            // reportViewer
+            // 
+            this.reportViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.reportViewer.Location = new System.Drawing.Point(0, 40);
+            this.reportViewer.Name = "reportViewer";
+            this.reportViewer.Size = new System.Drawing.Size(1172, 434);
+            this.reportViewer.TabIndex = 4;
             // 
             // Form1
             // 
@@ -827,8 +820,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrFromStartNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgStartNumbers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eNumberTagBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eNumberTagBindingSource)).EndInit();
+            this.tabResults.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -868,10 +860,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView dtgStartNumbers;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bibNumberDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tagIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource eNumberTagBindingSource;
-        private System.Windows.Forms.BindingSource eNumberTagBindingSource1;
         private System.Windows.Forms.Button btnAssignTags;
         private System.Windows.Forms.NumericUpDown nmrFromStartNumber;
         private System.Windows.Forms.Label label8;
@@ -903,6 +891,8 @@
         private System.Windows.Forms.TextBox tbxRunnerSearch;
         private System.Windows.Forms.TextBox tbxRunnerStartNumber;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TabPage tabResults;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
     }
 }
 
