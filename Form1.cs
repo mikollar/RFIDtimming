@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Windows.Forms;
 
@@ -323,13 +324,14 @@ namespace RFIDTimming
                 tbxReadTime.Text = "";
                 tbxReadStartNumber.Text = "";
                 lblReadMessage.Text = "";
+                lblStartNumber.Text = "";
 
                 if (rfidRead != null)
                 {
                     lblReadMessage.Text = rfidRead.Error;
 
                     tbxReadStartNumber.Text = rfidRead.StartNumber;
-
+                    lblStartNumber.Text = rfidRead.StartNumber;
                     if (rfidRead.Tag != null)
                     {
                         tbxReadTag.Text = rfidRead.Tag.TagID;
@@ -338,6 +340,7 @@ namespace RFIDTimming
 
                     if (rfidRead.Runner != null)
                     {
+                        System.Media.SystemSounds.Question.Play();
                         tbxReadRunner.Text = rfidRead.Runner.Surname + " " + rfidRead.Runner.Firstname;
                         tbxReadTime.Text = rfidRead.Tag.ReadTime.ToString("h\\:mm\\:ss");
                     }

@@ -90,13 +90,14 @@
             this.nmrFromStartNumber = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.dtgStartNumbers = new System.Windows.Forms.DataGridView();
-            this.bibNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tagIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.eNumberTagBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.bibNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tagIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eNumberTagBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.eNumberTagBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblStartNumber = new System.Windows.Forms.Label();
             this.tabs.SuspendLayout();
             this.tabPageCompetition.SuspendLayout();
             this.tabPageRunners.SuspendLayout();
@@ -567,6 +568,7 @@
             // 
             // tabPageStartNumbers
             // 
+            this.tabPageStartNumbers.Controls.Add(this.lblStartNumber);
             this.tabPageStartNumbers.Controls.Add(this.groupBox1);
             this.tabPageStartNumbers.Controls.Add(this.label9);
             this.tabPageStartNumbers.Controls.Add(this.cmbRFIDMode);
@@ -754,22 +756,6 @@
             this.dtgStartNumbers.Size = new System.Drawing.Size(396, 474);
             this.dtgStartNumbers.TabIndex = 26;
             // 
-            // bibNumberDataGridViewTextBoxColumn
-            // 
-            this.bibNumberDataGridViewTextBoxColumn.DataPropertyName = "BibNumber";
-            this.bibNumberDataGridViewTextBoxColumn.HeaderText = "BibNumber";
-            this.bibNumberDataGridViewTextBoxColumn.Name = "bibNumberDataGridViewTextBoxColumn";
-            // 
-            // tagIDDataGridViewTextBoxColumn
-            // 
-            this.tagIDDataGridViewTextBoxColumn.DataPropertyName = "TagID";
-            this.tagIDDataGridViewTextBoxColumn.HeaderText = "TagID";
-            this.tagIDDataGridViewTextBoxColumn.Name = "tagIDDataGridViewTextBoxColumn";
-            // 
-            // eNumberTagBindingSource1
-            // 
-            this.eNumberTagBindingSource1.DataSource = typeof(RFIDTimming.Models.E_NumberTag);
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(470, 6);
@@ -797,9 +783,35 @@
             this.button3.Text = "Ulož";
             this.button3.UseVisualStyleBackColor = true;
             // 
+            // bibNumberDataGridViewTextBoxColumn
+            // 
+            this.bibNumberDataGridViewTextBoxColumn.DataPropertyName = "BibNumber";
+            this.bibNumberDataGridViewTextBoxColumn.HeaderText = "BibNumber";
+            this.bibNumberDataGridViewTextBoxColumn.Name = "bibNumberDataGridViewTextBoxColumn";
+            // 
+            // tagIDDataGridViewTextBoxColumn
+            // 
+            this.tagIDDataGridViewTextBoxColumn.DataPropertyName = "TagID";
+            this.tagIDDataGridViewTextBoxColumn.HeaderText = "TagID";
+            this.tagIDDataGridViewTextBoxColumn.Name = "tagIDDataGridViewTextBoxColumn";
+            // 
+            // eNumberTagBindingSource1
+            // 
+            this.eNumberTagBindingSource1.DataSource = typeof(RFIDTimming.Models.E_NumberTag);
+            // 
             // eNumberTagBindingSource
             // 
             this.eNumberTagBindingSource.DataSource = typeof(RFIDTimming.Models.E_NumberTag);
+            // 
+            // lblStartNumber
+            // 
+            this.lblStartNumber.AutoSize = true;
+            this.lblStartNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 118.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblStartNumber.Location = new System.Drawing.Point(398, 71);
+            this.lblStartNumber.Name = "lblStartNumber";
+            this.lblStartNumber.Size = new System.Drawing.Size(163, 179);
+            this.lblStartNumber.TabIndex = 34;
+            this.lblStartNumber.Text = "0";
             // 
             // Form1
             // 
@@ -903,6 +915,7 @@
         private System.Windows.Forms.TextBox tbxRunnerSearch;
         private System.Windows.Forms.TextBox tbxRunnerStartNumber;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lblStartNumber;
     }
 }
 

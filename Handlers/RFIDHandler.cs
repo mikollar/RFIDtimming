@@ -157,20 +157,20 @@ namespace RFIDTimming.Handlers
                             {
                                 runnerCat = internalContext.E_Category.FirstOrDefault(x => x.EventID == this.ActiveEventID && x.CategoryID == returnRead.Runner.CategoryID);
                             }
-
-                            // calculate category start time
-                            var categoryStartTime = this.ActiveEvent.EventDateTime.TimeOfDay + TimeSpan.FromSeconds(runnerCat.OffsetStartTime);
-
-                            // if runner has category, write tag read only if minimum time for lap elpased after previous tag read
-                            if (lastTag == null || runnerCat == null || ((DateTime.Now.TimeOfDay - lastTag.ReadTime).TotalSeconds > runnerCat.MinLapTime && categoryStartTime <= DateTime.Now.TimeOfDay))
+                            if (returnRead.Runner != null && runnerCat != null)
                             {
-                                if (categoryStartTime <= readedTag.ReadTime)
-                                {
-                                    // save tag read to DB
-                                    internalContext.R_TagRead.Add(readedTag);
+                                // calculate category start time
+                                var categoryStartTime = this.ActiveEvent.EventDateTime.TimeOfDay + TimeSpan.FromSeconds(runnerCat.OffsetStartTime);
 
-                                    if (returnRead.Runner != null && runnerCat != null)
+                                // if runner has category, write tag read only if minimum time for lap elpased after previous tag read
+                                if (lastTag == null || runnerCat == null || ((DateTime.Now.TimeOfDay - lastTag.ReadTime).TotalSeconds > runnerCat.MinLapTime && categoryStartTime <= DateTime.Now.TimeOfDay))
+                                {
+                                    if (categoryStartTime <= readedTag.ReadTime)
                                     {
+                                        // save tag read to DB
+                                        internalContext.R_TagRead.Add(readedTag);
+
+
                                         var firstPossibleLapTime = categoryStartTime + TimeSpan.FromSeconds(runnerCat.MinLapTime);
 
                                         // count laps, tag reads lates as category start time
@@ -185,11 +185,12 @@ namespace RFIDTimming.Handlers
                                             returnRead.Runner.FinishTime = readedTag.ReadTime;
                                             returnRead.Runner.ResultTime = resultTime;
                                         }
-                                    }
-                                }
 
-                                // save to DB
-                                internalContext.SaveChanges();
+                                    }
+
+                                    // save to DB
+                                    internalContext.SaveChanges();
+                                }
                             }
                         }
                     }
