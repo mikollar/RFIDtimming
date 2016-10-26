@@ -94,10 +94,10 @@
             this.button3 = new System.Windows.Forms.Button();
             this.tabResults = new System.Windows.Forms.TabPage();
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.bibNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tagIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.eNumberTagBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.eNumberTagBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            //this.bibNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            //this.tagIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            //this.eNumberTagBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            //this.eNumberTagBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblStartNumber = new System.Windows.Forms.Label();
             this.tabs.SuspendLayout();
             this.tabPageCompetition.SuspendLayout();
@@ -781,20 +781,20 @@
             // 
             // bibNumberDataGridViewTextBoxColumn
             // 
-            this.bibNumberDataGridViewTextBoxColumn.DataPropertyName = "BibNumber";
-            this.bibNumberDataGridViewTextBoxColumn.HeaderText = "BibNumber";
-            this.bibNumberDataGridViewTextBoxColumn.Name = "bibNumberDataGridViewTextBoxColumn";
-            // 
-            // tagIDDataGridViewTextBoxColumn
-            // 
-            this.tagIDDataGridViewTextBoxColumn.DataPropertyName = "TagID";
-            this.tagIDDataGridViewTextBoxColumn.HeaderText = "TagID";
-            this.tagIDDataGridViewTextBoxColumn.Name = "tagIDDataGridViewTextBoxColumn";
-            // 
-            // eNumberTagBindingSource1
-            // 
-            this.eNumberTagBindingSource1.DataSource = typeof(RFIDTimming.Models.E_NumberTag);
-            // 
+            //this.bibNumberDataGridViewTextBoxColumn.DataPropertyName = "BibNumber";
+            //this.bibNumberDataGridViewTextBoxColumn.HeaderText = "BibNumber";
+            //this.bibNumberDataGridViewTextBoxColumn.Name = "bibNumberDataGridViewTextBoxColumn";
+            //// 
+            //// tagIDDataGridViewTextBoxColumn
+            //// 
+            //this.tagIDDataGridViewTextBoxColumn.DataPropertyName = "TagID";
+            //this.tagIDDataGridViewTextBoxColumn.HeaderText = "TagID";
+            //this.tagIDDataGridViewTextBoxColumn.Name = "tagIDDataGridViewTextBoxColumn";
+            //// 
+            //// eNumberTagBindingSource1
+            //// 
+            //this.eNumberTagBindingSource1.DataSource = typeof(RFIDTimming.Models.E_NumberTag);
+            //// 
             // eNumberTagBindingSource
             // 
             this.tabResults.Controls.Add(this.reportViewer);
