@@ -824,7 +824,7 @@
             this.groupBox3.TabIndex = 37;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "RFID";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
+           
             // 
             // groupBox4
             // 
