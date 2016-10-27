@@ -198,7 +198,7 @@
             this.tbxRunnerStartNumber.Location = new System.Drawing.Point(84, 22);
             this.tbxRunnerStartNumber.Name = "tbxRunnerStartNumber";
             this.tbxRunnerStartNumber.Size = new System.Drawing.Size(102, 20);
-            this.tbxRunnerStartNumber.TabIndex = 40;
+            this.tbxRunnerStartNumber.TabIndex = 1;
             // 
             // label18
             // 
@@ -235,7 +235,7 @@
             this.btnRunnerSave.Location = new System.Drawing.Point(293, 137);
             this.btnRunnerSave.Name = "btnRunnerSave";
             this.btnRunnerSave.Size = new System.Drawing.Size(75, 23);
-            this.btnRunnerSave.TabIndex = 36;
+            this.btnRunnerSave.TabIndex = 5;
             this.btnRunnerSave.Text = "Ulož";
             this.btnRunnerSave.UseVisualStyleBackColor = true;
             this.btnRunnerSave.Click += new System.EventHandler(this.btnRunnerSave_Click);
@@ -245,7 +245,7 @@
             this.tbxRunnerResultTime.Location = new System.Drawing.Point(84, 101);
             this.tbxRunnerResultTime.Name = "tbxRunnerResultTime";
             this.tbxRunnerResultTime.Size = new System.Drawing.Size(102, 20);
-            this.tbxRunnerResultTime.TabIndex = 35;
+            this.tbxRunnerResultTime.TabIndex = 4;
             // 
             // label15
             // 
@@ -269,11 +269,12 @@
             // 
             // cmbRunnerCategory
             // 
+            this.cmbRunnerCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRunnerCategory.FormattingEnabled = true;
             this.cmbRunnerCategory.Location = new System.Drawing.Point(84, 74);
             this.cmbRunnerCategory.Name = "cmbRunnerCategory";
             this.cmbRunnerCategory.Size = new System.Drawing.Size(284, 21);
-            this.cmbRunnerCategory.TabIndex = 32;
+            this.cmbRunnerCategory.TabIndex = 3;
             // 
             // lstRunners
             // 
@@ -291,7 +292,7 @@
             this.tbxRunnerName.Location = new System.Drawing.Point(84, 48);
             this.tbxRunnerName.Name = "tbxRunnerName";
             this.tbxRunnerName.Size = new System.Drawing.Size(284, 20);
-            this.tbxRunnerName.TabIndex = 19;
+            this.tbxRunnerName.TabIndex = 2;
             // 
             // lbl1
             // 
@@ -351,7 +352,7 @@
             this.tbxCatCode.Location = new System.Drawing.Point(116, 30);
             this.tbxCatCode.Name = "tbxCatCode";
             this.tbxCatCode.Size = new System.Drawing.Size(284, 20);
-            this.tbxCatCode.TabIndex = 14;
+            this.tbxCatCode.TabIndex = 1;
             // 
             // label7
             // 
@@ -388,7 +389,7 @@
             this.btnCatSave.Location = new System.Drawing.Point(325, 222);
             this.btnCatSave.Name = "btnCatSave";
             this.btnCatSave.Size = new System.Drawing.Size(75, 23);
-            this.btnCatSave.TabIndex = 10;
+            this.btnCatSave.TabIndex = 6;
             this.btnCatSave.Text = "Ulož";
             this.btnCatSave.UseVisualStyleBackColor = true;
             this.btnCatSave.Click += new System.EventHandler(this.btnCatSave_Click);
@@ -398,14 +399,14 @@
             this.numCatStartOffset.Location = new System.Drawing.Point(116, 167);
             this.numCatStartOffset.Name = "numCatStartOffset";
             this.numCatStartOffset.Size = new System.Drawing.Size(65, 20);
-            this.numCatStartOffset.TabIndex = 9;
+            this.numCatStartOffset.TabIndex = 5;
             // 
             // numCatMinLapTime
             // 
             this.numCatMinLapTime.Location = new System.Drawing.Point(116, 132);
             this.numCatMinLapTime.Name = "numCatMinLapTime";
             this.numCatMinLapTime.Size = new System.Drawing.Size(65, 20);
-            this.numCatMinLapTime.TabIndex = 8;
+            this.numCatMinLapTime.TabIndex = 4;
             this.numCatMinLapTime.Value = new decimal(new int[] {
             60,
             0,
@@ -417,7 +418,7 @@
             this.numCatLaps.Location = new System.Drawing.Point(116, 96);
             this.numCatLaps.Name = "numCatLaps";
             this.numCatLaps.Size = new System.Drawing.Size(65, 20);
-            this.numCatLaps.TabIndex = 7;
+            this.numCatLaps.TabIndex = 3;
             this.numCatLaps.Value = new decimal(new int[] {
             1,
             0,
@@ -459,7 +460,7 @@
             this.tbxCatCatName.Location = new System.Drawing.Point(116, 64);
             this.tbxCatCatName.Name = "tbxCatCatName";
             this.tbxCatCatName.Size = new System.Drawing.Size(284, 20);
-            this.tbxCatCatName.TabIndex = 3;
+            this.tbxCatCatName.TabIndex = 2;
             // 
             // label3
             // 

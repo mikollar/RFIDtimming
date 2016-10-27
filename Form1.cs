@@ -33,7 +33,7 @@ namespace RFIDTimming
             cmbRFIDMode.DataSource = Enum.GetValues(typeof(RFIDTimming.Enums.Enums.RFIDMode));
             cmbRFIDMode.SelectedValueChanged += CmbRFIDMode_SelectedValueChanged;
 
-            dtmEventDate.CustomFormat = "dd.MM.yyyy H:mm";
+            dtmEventDate.CustomFormat = "dd.MM.yyyy H:mm:ss";
 
             // tab selected event
             tabs.Selected += Tabs_Selected;
@@ -97,6 +97,7 @@ namespace RFIDTimming
                 if (activeEvent != null)
                 {
                     this.ReloadCategories();
+               //     lstCategories.ClearSelected();
                 }
                 else
                 {
@@ -431,7 +432,18 @@ namespace RFIDTimming
                 {
                     tbxRunnerName.Text = runner.Surname;
                     tbxRunnerStartNumber.Text = runner.StartNumber;
-                    cmbRunnerCategory.SelectedValue = runner.CategoryID;
+
+                    var ds = (List<E_Category>)cmbRunnerCategory.DataSource;
+                    if (ds != null)
+                    {
+                       // cmbRunnerCategory.SelectedValue = runner.CategoryID;
+                        var selCat = ds.FirstOrDefault(x => x.CategoryID == runner.CategoryID);
+                        if(selCat != null)
+                        {
+                            cmbRunnerCategory.SelectedItem = selCat;
+                        }
+
+                    }
                     tbxRunnerResultTime.Text = runner.ResultTime.HasValue ? runner.ResultTime.Value.ToString("h\\:mm\\:ss") : "";
                 }
             }
