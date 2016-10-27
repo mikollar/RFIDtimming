@@ -21,6 +21,9 @@ namespace RFIDTimming
 
         List<string> ReadedNumbers = new List<string>();
 
+        /// <summary>
+        /// Form constructor
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
@@ -52,26 +55,17 @@ namespace RFIDTimming
         }
 
         /// <summary>
-        /// Search runner
+        /// Form load
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void tbxRunnerSearch_KeyUp(object sender, KeyEventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            lstRunners.ClearSelected();
+            //var dd = cnt.R_TagRead.ToList();
+            // config UI
+            this.ConfigUI();
 
-            var runners = (List<E_Runners>)lstRunners.DataSource;
-            if(runners != null)
-            {
-                var foundRunner = runners.FirstOrDefault(x => x.Surname.ToLower().Contains((tbxRunnerSearch.Text ?? "").ToLower()));
-                if(foundRunner != null)
-                {
-                    lstRunners.SelectedItem = foundRunner;
-                }
-            }
         }
-
-
 
         /// <summary>
         /// Tab select event
@@ -139,32 +133,6 @@ namespace RFIDTimming
         }
 
         /// <summary>
-        /// Form load
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            //var dd = cnt.R_TagRead.ToList();
-            // config UI
-            this.ConfigUI();
-            
-        }
-
-        /// <summary>
-        /// Create or update event
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnSaveEvent_Click(object sender, EventArgs e)
-        {
-            // create or update event
-            evHandler.CreateUpdateEvent(tbxEventName.Text, dtmEventDate.Value);
-            // config UI
-            this.ConfigUI();
-        }
-
-        /// <summary>
         /// Config UI
         /// </summary>
         private void ConfigUI()
@@ -203,6 +171,21 @@ namespace RFIDTimming
             }
         }
 
+        #region Event
+
+        /// <summary>
+        /// Create or update event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSaveEvent_Click(object sender, EventArgs e)
+        {
+            // create or update event
+            evHandler.CreateUpdateEvent(tbxEventName.Text, dtmEventDate.Value);
+            // config UI
+            this.ConfigUI();
+        }
+
         /// <summary>
         /// Open event
         /// </summary>
@@ -233,6 +216,7 @@ namespace RFIDTimming
             tabs.SelectTab(tabPageCompetition);
         }
 
+        #endregion
 
         #region Categories
         /// <summary>
@@ -283,9 +267,7 @@ namespace RFIDTimming
                 this.ReloadCategories();
             }
         }
-
-
-        #endregion
+        
 
         /// <summary>
         /// Categories list selection changed
@@ -311,6 +293,10 @@ namespace RFIDTimming
                 btnCatDelete.Hide();
             }
         }
+
+        #endregion
+
+        #region RFID
 
         /// <summary>
         /// Get selected RFID mode
@@ -416,8 +402,57 @@ namespace RFIDTimming
             return 0;
         }
 
+        /// <summary>
+        /// Start assign tags to numbers
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAssignTags_Click(object sender, EventArgs e)
+        {
+            cmbRFIDMode.SelectedItem = Enums.Enums.RFIDMode.ASSIGN;
+
+            rfidHandler.SetRfidMode(this.GetSelectedRFIDMode(), evHandler.GetActiveEvent(), (int)nmrFromStartNumber.Value);
+        }
+
+        /// <summary>
+        /// process RFID timer tick event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tmrProcessRFID_Tick(object sender, EventArgs e)
+        {
+            // stop timer
+            tmrProcessRFID.Stop();
+            // process RFID tags
+            rfidHandler.ProcessReadedTags();
+            // run timer
+            tmrProcessRFID.Start();
+        }
+
+        #endregion
 
         #region Runners
+        /// <summary>
+        /// Search runner
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void tbxRunnerSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            lstRunners.ClearSelected();
+
+            var runners = (List<E_Runners>)lstRunners.DataSource;
+            if (runners != null)
+            {
+                var foundRunner = runners.FirstOrDefault(x => x.Surname.ToLower().Contains((tbxRunnerSearch.Text ?? "").ToLower()));
+                if (foundRunner != null)
+                {
+                    lstRunners.SelectedItem = foundRunner;
+                }
+            }
+        }
+
+
 
         /// <summary>
         /// Get selected runner
@@ -489,8 +524,6 @@ namespace RFIDTimming
             lstRunners.ClearSelected();
         }
 
-        #endregion
-
         /// <summary>
         /// Create/Update runner
         /// </summary>
@@ -554,6 +587,8 @@ namespace RFIDTimming
             }
         }
 
+        #endregion
+
         /// <summary>
         /// Show report
         /// </summary>
@@ -584,26 +619,6 @@ namespace RFIDTimming
            reportViewer.LocalReport.SetParameters(new ReportParameter[] { rp });
 
             this.reportViewer.RefreshReport();
-        }
-
-        /// <summary>
-        /// process RFID timer tick event
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tmrProcessRFID_Tick(object sender, EventArgs e)
-        {
-            // stop timer
-            tmrProcessRFID.Stop();
-            // process RFID tags
-            rfidHandler.ProcessReadedTags();
-            // run timer
-            tmrProcessRFID.Start();
-        }
-
-        private void groupBox3_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }

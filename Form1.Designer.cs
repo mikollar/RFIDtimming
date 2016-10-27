@@ -176,8 +176,6 @@
             // tabPageRunners
             // 
             this.tabPageRunners.Controls.Add(this.groupBox6);
-            this.tabPageRunners.Controls.Add(this.tbxRunnerSearch);
-            this.tabPageRunners.Controls.Add(this.lstRunners);
             this.tabPageRunners.Location = new System.Drawing.Point(4, 22);
             this.tabPageRunners.Name = "tabPageRunners";
             this.tabPageRunners.Padding = new System.Windows.Forms.Padding(3);
@@ -188,14 +186,14 @@
             // 
             // tbxRunnerSearch
             // 
-            this.tbxRunnerSearch.Location = new System.Drawing.Point(0, 8);
+            this.tbxRunnerSearch.Location = new System.Drawing.Point(3, 17);
             this.tbxRunnerSearch.Name = "tbxRunnerSearch";
             this.tbxRunnerSearch.Size = new System.Drawing.Size(257, 20);
             this.tbxRunnerSearch.TabIndex = 41;
             // 
             // tbxRunnerStartNumber
             // 
-            this.tbxRunnerStartNumber.Location = new System.Drawing.Point(84, 22);
+            this.tbxRunnerStartNumber.Location = new System.Drawing.Point(346, 43);
             this.tbxRunnerStartNumber.Name = "tbxRunnerStartNumber";
             this.tbxRunnerStartNumber.Size = new System.Drawing.Size(102, 20);
             this.tbxRunnerStartNumber.TabIndex = 1;
@@ -204,7 +202,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label18.Location = new System.Drawing.Point(6, 25);
+            this.label18.Location = new System.Drawing.Point(268, 46);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(34, 13);
             this.label18.TabIndex = 39;
@@ -212,7 +210,7 @@
             // 
             // btnNewRunner
             // 
-            this.btnNewRunner.Location = new System.Drawing.Point(201, 137);
+            this.btnNewRunner.Location = new System.Drawing.Point(463, 158);
             this.btnNewRunner.Name = "btnNewRunner";
             this.btnNewRunner.Size = new System.Drawing.Size(75, 23);
             this.btnNewRunner.TabIndex = 38;
@@ -222,7 +220,7 @@
             // 
             // btnDeleteRunner
             // 
-            this.btnDeleteRunner.Location = new System.Drawing.Point(109, 137);
+            this.btnDeleteRunner.Location = new System.Drawing.Point(371, 158);
             this.btnDeleteRunner.Name = "btnDeleteRunner";
             this.btnDeleteRunner.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteRunner.TabIndex = 37;
@@ -232,7 +230,7 @@
             // 
             // btnRunnerSave
             // 
-            this.btnRunnerSave.Location = new System.Drawing.Point(293, 137);
+            this.btnRunnerSave.Location = new System.Drawing.Point(555, 158);
             this.btnRunnerSave.Name = "btnRunnerSave";
             this.btnRunnerSave.Size = new System.Drawing.Size(75, 23);
             this.btnRunnerSave.TabIndex = 5;
@@ -242,7 +240,7 @@
             // 
             // tbxRunnerResultTime
             // 
-            this.tbxRunnerResultTime.Location = new System.Drawing.Point(84, 101);
+            this.tbxRunnerResultTime.Location = new System.Drawing.Point(346, 122);
             this.tbxRunnerResultTime.Name = "tbxRunnerResultTime";
             this.tbxRunnerResultTime.Size = new System.Drawing.Size(102, 20);
             this.tbxRunnerResultTime.TabIndex = 4;
@@ -251,7 +249,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label15.Location = new System.Drawing.Point(6, 104);
+            this.label15.Location = new System.Drawing.Point(268, 125);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(28, 13);
             this.label15.TabIndex = 34;
@@ -261,7 +259,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label17.Location = new System.Drawing.Point(6, 77);
+            this.label17.Location = new System.Drawing.Point(268, 98);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(61, 13);
             this.label17.TabIndex = 33;
@@ -271,7 +269,7 @@
             // 
             this.cmbRunnerCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRunnerCategory.FormattingEnabled = true;
-            this.cmbRunnerCategory.Location = new System.Drawing.Point(84, 74);
+            this.cmbRunnerCategory.Location = new System.Drawing.Point(346, 95);
             this.cmbRunnerCategory.Name = "cmbRunnerCategory";
             this.cmbRunnerCategory.Size = new System.Drawing.Size(284, 21);
             this.cmbRunnerCategory.TabIndex = 3;
@@ -281,15 +279,15 @@
             this.lstRunners.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lstRunners.FormattingEnabled = true;
-            this.lstRunners.Location = new System.Drawing.Point(0, 39);
+            this.lstRunners.Location = new System.Drawing.Point(3, 43);
             this.lstRunners.Name = "lstRunners";
-            this.lstRunners.Size = new System.Drawing.Size(257, 433);
+            this.lstRunners.Size = new System.Drawing.Size(257, 420);
             this.lstRunners.TabIndex = 20;
             this.lstRunners.SelectedIndexChanged += new System.EventHandler(this.lstRunners_SelectedIndexChanged);
             // 
             // tbxRunnerName
             // 
-            this.tbxRunnerName.Location = new System.Drawing.Point(84, 48);
+            this.tbxRunnerName.Location = new System.Drawing.Point(346, 69);
             this.tbxRunnerName.Name = "tbxRunnerName";
             this.tbxRunnerName.Size = new System.Drawing.Size(284, 20);
             this.tbxRunnerName.TabIndex = 2;
@@ -298,7 +296,7 @@
             // 
             this.lbl1.AutoSize = true;
             this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lbl1.Location = new System.Drawing.Point(6, 51);
+            this.lbl1.Location = new System.Drawing.Point(268, 72);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(38, 13);
             this.lbl1.TabIndex = 18;
@@ -706,6 +704,7 @@
             this.btnAssignTags.TabIndex = 29;
             this.btnAssignTags.Text = "Priradzuj";
             this.btnAssignTags.UseVisualStyleBackColor = true;
+            this.btnAssignTags.Click += new System.EventHandler(this.btnAssignTags_Click);
             // 
             // nmrFromStartNumber
             // 
@@ -870,19 +869,21 @@
             // 
             this.groupBox6.BackColor = System.Drawing.Color.Gainsboro;
             this.groupBox6.Controls.Add(this.label18);
-            this.groupBox6.Controls.Add(this.lbl1);
+            this.groupBox6.Controls.Add(this.tbxRunnerSearch);
+            this.groupBox6.Controls.Add(this.lstRunners);
             this.groupBox6.Controls.Add(this.tbxRunnerStartNumber);
-            this.groupBox6.Controls.Add(this.tbxRunnerName);
-            this.groupBox6.Controls.Add(this.cmbRunnerCategory);
-            this.groupBox6.Controls.Add(this.btnNewRunner);
-            this.groupBox6.Controls.Add(this.label17);
+            this.groupBox6.Controls.Add(this.lbl1);
             this.groupBox6.Controls.Add(this.btnDeleteRunner);
             this.groupBox6.Controls.Add(this.label15);
+            this.groupBox6.Controls.Add(this.label17);
+            this.groupBox6.Controls.Add(this.tbxRunnerName);
             this.groupBox6.Controls.Add(this.btnRunnerSave);
+            this.groupBox6.Controls.Add(this.cmbRunnerCategory);
+            this.groupBox6.Controls.Add(this.btnNewRunner);
             this.groupBox6.Controls.Add(this.tbxRunnerResultTime);
-            this.groupBox6.Location = new System.Drawing.Point(263, 39);
+            this.groupBox6.Location = new System.Drawing.Point(3, 6);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(391, 183);
+            this.groupBox6.Size = new System.Drawing.Size(661, 465);
             this.groupBox6.TabIndex = 42;
             this.groupBox6.TabStop = false;
             // 
@@ -919,7 +920,6 @@
             this.tabs.ResumeLayout(false);
             this.tabPageCompetition.ResumeLayout(false);
             this.tabPageRunners.ResumeLayout(false);
-            this.tabPageRunners.PerformLayout();
             this.tabPageCategories.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numCatStartOffset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCatMinLapTime)).EndInit();
