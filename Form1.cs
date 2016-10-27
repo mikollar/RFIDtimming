@@ -38,6 +38,9 @@ namespace RFIDTimming
             // tab selected event
             tabs.Selected += Tabs_Selected;
 
+            // runners search
+            tbxRunnerSearch.KeyUp += tbxRunnerSearch_KeyUp;
+
             // select open event tab
             tabs.SelectTab(tabPageCompetition);
 
@@ -46,6 +49,26 @@ namespace RFIDTimming
 
             // run RFID process timer
             tmrProcessRFID.Start();
+        }
+
+        /// <summary>
+        /// Search runner
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void tbxRunnerSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            lstRunners.ClearSelected();
+
+            var runners = (List<E_Runners>)lstRunners.DataSource;
+            if(runners != null)
+            {
+                var foundRunner = runners.FirstOrDefault(x => x.Surname.ToLower().Contains((tbxRunnerSearch.Text ?? "").ToLower()));
+                if(foundRunner != null)
+                {
+                    lstRunners.SelectedItem = foundRunner;
+                }
+            }
         }
 
 
