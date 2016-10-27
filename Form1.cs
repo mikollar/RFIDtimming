@@ -19,6 +19,8 @@ namespace RFIDTimming
         EventsHandler evHandler = null;
         RFIDHandler rfidHandler = null;
 
+        List<string> ReadedNumbers = new List<string>();
+
         public Form1()
         {
             InitializeComponent();
@@ -41,6 +43,9 @@ namespace RFIDTimming
 
             // hide delte category button
             btnCatDelete.Hide();
+
+            // run RFID process timer
+            tmrProcessRFID.Start();
         }
 
 
@@ -355,6 +360,25 @@ namespace RFIDTimming
                         System.Media.SystemSounds.Question.Play();
                         tbxReadRunner.Text = rfidRead.Runner.Surname + " " + rfidRead.Runner.Firstname;
                         tbxReadTime.Text = rfidRead.Tag.ReadTime.ToString("h\\:mm\\:ss");
+
+                        // add to readed numbers list
+                        string info = "";
+
+                        if (rfidRead.Finish)
+                        {
+                            info = "CIEL";
+                        }
+                        else if(rfidRead.Lap > 0)
+                        {
+                            info = rfidRead.Lap.ToString() + ". KOLO";
+                        }
+
+                        if (rfidRead.Finish == true || rfidRead.Lap > 0)
+                        {
+                            this.ReadedNumbers.Add(rfidRead.Tag.ReadTime.ToString("h\\:mm\\:ss") + " \t " + rfidRead.StartNumber + " \t" + info);
+                            lstReadedNumbers.DataSource = this.ReadedNumbers.OrderByDescending(o => o).ToList();
+                        }
+
                     }
                 }
 
@@ -495,6 +519,9 @@ namespace RFIDTimming
             }
         }
 
+        /// <summary>
+        /// Show report
+        /// </summary>
         private void ShowReports()
         {
 
@@ -522,6 +549,26 @@ namespace RFIDTimming
            reportViewer.LocalReport.SetParameters(new ReportParameter[] { rp });
 
             this.reportViewer.RefreshReport();
+        }
+
+        /// <summary>
+        /// process RFID timer tick event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tmrProcessRFID_Tick(object sender, EventArgs e)
+        {
+            // stop timer
+            tmrProcessRFID.Stop();
+            // process RFID tags
+            rfidHandler.ProcessReadedTags();
+            // run timer
+            tmrProcessRFID.Start();
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

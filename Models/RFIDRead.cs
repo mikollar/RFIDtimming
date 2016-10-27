@@ -13,6 +13,10 @@ namespace RFIDTimming.Models
 
         public string StartNumber { get; set; }
 
+        public int Lap { get; set; }
+
+        public bool Finish { get; set; }
+
         public string Error { get; set; }
     }
 

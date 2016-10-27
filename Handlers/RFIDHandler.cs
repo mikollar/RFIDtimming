@@ -13,6 +13,8 @@ namespace RFIDTimming.Handlers
    
     class RFIDHandler : BaseHandler
     {
+        Queue<TagReport> ReadedTagsQueue = new Queue<TagReport>();
+
         Enums.Enums.RFIDMode RFIDMode = Enums.Enums.RFIDMode.OFF;
         Func<RFIDRead, int> ReadRFIDCallback = null;
         int FirstStartNumber = 1;
@@ -32,6 +34,8 @@ namespace RFIDTimming.Handlers
         public string InitRFID(Func<RFIDRead, int> readRFIDCallBack)
         {
             this.ReadRFIDCallback = readRFIDCallBack;
+            // clear queue
+            this.ReadedTagsQueue = new Queue<TagReport>();
 
             try
             {
@@ -75,6 +79,7 @@ namespace RFIDTimming.Handlers
 
 
         private static object lockObj = new object();
+        private static object lockObjQueue = new object();
         /// <summary>
         /// Read tag event
         /// </summary>
@@ -82,8 +87,53 @@ namespace RFIDTimming.Handlers
         /// <param name="report"></param>
         private void Reader_TagsReported(ImpinjReader reader, TagReport report)
         {
+            lock (lockObjQueue)
+            {
+                // add to FIFO
+                this.ReadedTagsQueue.Enqueue(report);
+            }
+        }
+
+        /// <summary>
+        /// Process readed tags
+        /// </summary>
+        public void ProcessReadedTags()
+        {
+            List<TagReport> tagReports = null;
+
+            // check if queue has items
+            if(this.ReadedTagsQueue.Count == 0)
+            {
+                return;
+            }
+
             var internalContext = new Context();
-            foreach (var tag in report.Tags)
+
+            // get all categories
+            var categories = internalContext.E_Category.AsNoTracking().ToList();
+
+            lock (lockObjQueue)
+            {
+                // copy queue
+                tagReports = this.ReadedTagsQueue.ToArray().ToList();
+                // clear queue
+                this.ReadedTagsQueue.Clear();
+            }
+
+            // group same tags, get first time
+            var groupedRead = tagReports.SelectMany(s => s.Tags)
+                                                 .GroupBy(grp => grp.Epc)
+                                                 .Select(s => new
+                                                 {
+                                                     FirstSeenTime = s.Min(m => m.FirstSeenTime),
+                                                     Epc = s.Min(m => m.Epc),
+                                                     Tid = s.Min(m => m.Tid),
+                                                     Anntena = s.Min(m => m.AntennaPortNumber)
+                                                 });
+
+
+            // loop queue
+            foreach (var tag in groupedRead)
             {
                 RFIDRead returnRead = new RFIDRead();
 
@@ -92,13 +142,16 @@ namespace RFIDTimming.Handlers
                     ReadTime = tag.FirstSeenTime.LocalDateTime.TimeOfDay,
                     TagID = tag.Epc.ToString(),
                     UserData = tag.Tid.ToString(),
-                    Antenna = tag.AntennaPortNumber,
+                    Antenna = tag.Anntena,
                 };
 
                 returnRead.Tag = readedTag;
 
                 // find assigned number to tag
-                var assignedNumber = internalContext.E_NumberTag.FirstOrDefault(x => x.TagID == readedTag.TagID);
+                var assignedNumber = internalContext.E_NumberTag
+                                                    .AsNoTracking()
+                                                    .FirstOrDefault(x => x.TagID == readedTag.TagID);
+
                 if (assignedNumber != null)
                 {
                     returnRead.StartNumber = assignedNumber.BibNumber;
@@ -115,6 +168,7 @@ namespace RFIDTimming.Handlers
                 // assign tag to start number
                 else if (this.RFIDMode == Enums.Enums.RFIDMode.ASSIGN)
                 {
+                    #region ASSIGN mode
                     if (assignedNumber != null)
                     {
                         returnRead.Error = "Čip už ma priradené štartovné číslo " + assignedNumber.BibNumber;
@@ -131,6 +185,7 @@ namespace RFIDTimming.Handlers
                         // move to next number
                         this.FirstStartNumber++;
                     }
+                    #endregion
                 }
                 // read tag an write to table
                 else if (this.RFIDMode == Enums.Enums.RFIDMode.READ && this.ActiveEventID.HasValue)
@@ -155,8 +210,9 @@ namespace RFIDTimming.Handlers
                             E_Category runnerCat = null;
                             if (returnRead.Runner != null)
                             {
-                                runnerCat = internalContext.E_Category.FirstOrDefault(x => x.EventID == this.ActiveEventID && x.CategoryID == returnRead.Runner.CategoryID);
+                                runnerCat = categories.FirstOrDefault(x => x.EventID == this.ActiveEventID && x.CategoryID == returnRead.Runner.CategoryID);
                             }
+
                             if (returnRead.Runner != null && runnerCat != null)
                             {
                                 // calculate category start time
@@ -169,44 +225,55 @@ namespace RFIDTimming.Handlers
                                     {
                                         // save tag read to DB
                                         internalContext.R_TagRead.Add(readedTag);
+                                        // save to DB
+                                        internalContext.SaveChanges();
 
-
+                                        // find first possible lap time for current tag
                                         var firstPossibleLapTime = categoryStartTime + TimeSpan.FromSeconds(runnerCat.MinLapTime);
 
                                         // count laps, tag reads lates as category start time
-                                        var lapsCount = internalContext.R_TagRead.Count(x => x.EventID == this.ActiveEventID &&
-                                                                                             x.TagID == readedTag.TagID &&
-                                                                                             x.ReadTime >= firstPossibleLapTime) + 1;
+                                        var lapsCount = internalContext.R_TagRead
+                                                                        .AsNoTracking()
+                                                                        .Count(x => x.EventID == this.ActiveEventID &&
+                                                                                    x.TagID == readedTag.TagID &&
+                                                                                    x.ReadTime >= firstPossibleLapTime);
 
+                                        if(lapsCount <= runnerCat.Laps)
+                                        {
+                                            returnRead.Lap = lapsCount;
+                                        }
+
+                                        // calculate runner result time
                                         var resultTime = readedTag.ReadTime - categoryStartTime;
+
                                         // if runner finish last lap
                                         if (lapsCount == runnerCat.Laps && resultTime.TotalSeconds > 0)
                                         {
                                             returnRead.Runner.FinishTime = readedTag.ReadTime;
                                             returnRead.Runner.ResultTime = resultTime;
+
+                                            returnRead.Finish = true;
+
+                                            // save to DB
+                                            internalContext.SaveChanges();
                                         }
 
                                     }
-
-                                    // save to DB
-                                    internalContext.SaveChanges();
                                 }
                             }
                         }
                     }
                 }
 
-                if(this.ReadRFIDCallback != null)
+                if (this.ReadRFIDCallback != null)
                 {
                     this.ReadRFIDCallback(returnRead);
                 }
 
-             
-
-                Console.WriteLine(tag.LastSeenTime.LocalDateTime.ToShortTimeString() + " " + tag.Epc + " " + tag.ChannelInMhz);
+                Console.WriteLine(tag.FirstSeenTime.LocalDateTime.ToShortTimeString() + " " + tag.Epc + " ");
             }
-
         }
+        
 
         /// <summary>
         /// Set RFID mode
