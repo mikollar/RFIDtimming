@@ -38,6 +38,7 @@ namespace RFIDTimming.Data
         public DbSet<E_Runners> E_Runners { get; set; }
         public DbSet<R_TagRead> R_TagRead { get; set; }
         public DbSet<E_Category> E_Category { get; set; }
+        public DbSet<E_Club> E_Club { get; set; }
         #endregion
 
         #region Overrides
@@ -54,6 +55,7 @@ namespace RFIDTimming.Data
             modelBuilder.Configurations.Add(new E_RunnersMap());
             modelBuilder.Configurations.Add(new R_TagReadMap());
             modelBuilder.Configurations.Add(new E_CategoryMap());
+            modelBuilder.Configurations.Add(new E_ClubMap());
 
             base.OnModelCreating(modelBuilder);
         }

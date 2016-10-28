@@ -100,10 +100,13 @@ namespace RFIDTimming
                 if (activeEvent != null)
                 {
                     this.ReloadRunners();
+                    this.ReloadRunnerClubs();
 
                     cmbRunnerCategory.DisplayMember = "CategoryName";
                     cmbRunnerCategory.ValueMember = "CateogryID";
                     cmbRunnerCategory.DataSource = new CategoriesHandler(this.evHandler.GetActiveEvent(), this.evHandler.Context).GetCategories();
+
+                    this.lstRunners_SelectedIndexChanged(null, null);
                 }
                 else
                 {
@@ -125,6 +128,16 @@ namespace RFIDTimming
                 if (activeEvent != null)
                 {
                     this.ShowReports();
+                }
+                else
+                {
+                }
+            }
+            if (e.TabPage == tabPageClubs)
+            {
+                if (activeEvent != null)
+                {
+                    this.ReloadClubs();
                 }
                 else
                 {
@@ -359,6 +372,9 @@ namespace RFIDTimming
 
                     tbxReadStartNumber.Text = rfidRead.StartNumber;
                     lblStartNumber.Text = rfidRead.StartNumber;
+
+                    nmrFromStartNumber.Value = rfidRead.NextAssignNumber ?? 0;
+
                     if (rfidRead.Tag != null)
                     {
                         tbxReadTag.Text = rfidRead.Tag.TagID;
@@ -474,8 +490,10 @@ namespace RFIDTimming
         /// </summary>
         private void ReloadRunners()
         {
-            lstRunners.DisplayMember = "Surname";
+            lstRunners.DisplayMember = "ShowNameList";
             lstRunners.DataSource = new RunnersHandler(evHandler.GetActiveEvent(), evHandler.Context).GetRunners();
+
+            lstRunners.SelectedIndex = -1;
         }
 
         // On change selected runner
@@ -491,6 +509,8 @@ namespace RFIDTimming
                     tbxRunnerName.Text = runner.Surname;
                     tbxRunnerStartNumber.Text = runner.StartNumber;
 
+                    #region select category
+
                     var ds = (List<E_Category>)cmbRunnerCategory.DataSource;
                     if (ds != null)
                     {
@@ -502,6 +522,27 @@ namespace RFIDTimming
                         }
 
                     }
+                    #endregion
+
+                    #region select club
+
+                    var dsClub = (List<E_Club>)cmbRunnerClub.DataSource;
+                    if (dsClub != null)
+                    {
+                        // cmbRunnerCategory.SelectedValue = runner.CategoryID;
+                        var selClub = dsClub.FirstOrDefault(x => x.ClubID == runner.ClubID);
+                        if (selClub != null)
+                        {
+                            cmbRunnerClub.SelectedItem = selClub;
+                        }
+                        else
+                        {
+                            cmbRunnerClub.SelectedItem = null;
+                        }
+
+                    }
+                    #endregion
+
                     tbxRunnerResultTime.Text = runner.ResultTime.HasValue ? runner.ResultTime.Value.ToString("hh\\:mm\\:ss") : "";
                 }
             }
@@ -551,8 +592,16 @@ namespace RFIDTimming
                 return;
             }
 
+            int? clubID = null;
+
+            if(cmbRunnerClub.SelectedItem != null)
+            {
+                clubID = ((E_Club)cmbRunnerClub.SelectedItem).ClubID;
+            }
+
+            E_Runners createdRunner = null;
             // save to DB
-            var msg = new RunnersHandler(evHandler.GetActiveEvent(), evHandler.Context).CreateUpdateRunner(runnerID, tbxRunnerName.Text, runnerCategory.CategoryID, "", tbxRunnerStartNumber.Text);
+            var msg = new RunnersHandler(evHandler.GetActiveEvent(), evHandler.Context).CreateUpdateRunner(runnerID, tbxRunnerName.Text, runnerCategory.CategoryID, clubID, cmbRunnerClub.Text, tbxRunnerStartNumber.Text, tbxRunnerResultTime.Text, out createdRunner);
             this.ReloadRunners();
 
             if(!string.IsNullOrEmpty(msg))
@@ -563,6 +612,14 @@ namespace RFIDTimming
                                 MessageBoxIcon.Exclamation,
                                 MessageBoxDefaultButton.Button1);
             }
+
+            this.ReloadRunnerClubs();
+
+            if(createdRunner != null)
+            {
+                lstRunners.SelectedItem = createdRunner;
+            }
+
         }
 
         // Clear form to add new runner
@@ -585,6 +642,24 @@ namespace RFIDTimming
 
                 this.ReloadRunners();
             }
+        }
+
+        /// <summary>
+        /// Reload runner clubs
+        /// </summary>
+        private void ReloadRunnerClubs()
+        {
+            cmbRunnerClub.DisplayMember = "Name";
+            cmbRunnerClub.DataSource = new RunnersHandler(evHandler.GetActiveEvent(), evHandler.Context).GetClubs();
+        }
+
+        /// <summary>
+        /// Reload clubs
+        /// </summary>
+        private void ReloadClubs()
+        {
+            lstClubs.DisplayMember = "Name";
+            lstClubs.DataSource = new RunnersHandler(evHandler.GetActiveEvent(), evHandler.Context).GetClubs();
         }
 
         #endregion
@@ -619,6 +694,21 @@ namespace RFIDTimming
            reportViewer.LocalReport.SetParameters(new ReportParameter[] { rp });
 
             this.reportViewer.RefreshReport();
+        }
+
+        private void btnDeleteClub_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string[] clipboardRows = Clipboard.GetText(TextDataFormat.UnicodeText).Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+            foreach (var item in clipboardRows)
+            {
+                var columns = (item ?? "").Split('\t');
+            }
         }
     }
 }

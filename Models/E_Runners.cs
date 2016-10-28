@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RFIDTimming.Models
 {
@@ -14,7 +15,23 @@ namespace RFIDTimming.Models
 
         public string CategoryID { get; set; }
 
+        public int? ClubID { get; set; }
+
         public TimeSpan? FinishTime { get; set; }
         public TimeSpan? ResultTime { get; set; }
+
+        [NotMapped]
+        public string ShowNameList
+        {
+            get
+            {
+                return (this.StartNumber ?? "").PadLeft(4, ' ') + "\t" + this.Surname;
+            }
+            set
+            {
+
+
+            }
+        }
     }
 }
