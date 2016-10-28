@@ -103,6 +103,15 @@
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.tmrProcessRFID = new System.Windows.Forms.Timer(this.components);
             this.tbxRunnerResultTime = new System.Windows.Forms.MaskedTextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.cmbRunnerClub = new System.Windows.Forms.ComboBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.lstClubs = new System.Windows.Forms.ListBox();
+            this.tbxClubName = new System.Windows.Forms.TextBox();
+            this.btnNewClub = new System.Windows.Forms.Button();
+            this.btnDeleteClub = new System.Windows.Forms.Button();
+            this.btnClubSave = new System.Windows.Forms.Button();
             this.tabs.SuspendLayout();
             this.tabPageCompetition.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -113,6 +122,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numCatLaps)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCatMinLapTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCatStartOffset)).BeginInit();
+            this.tabPageClubs.SuspendLayout();
             this.tabPageAddEvent.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tabPageStartNumbers.SuspendLayout();
@@ -122,10 +132,13 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgStartNumbers)).BeginInit();
             this.tabResults.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabs
             // 
+            this.tabs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.tabs.Controls.Add(this.tabPageCompetition);
             this.tabs.Controls.Add(this.tabPageRunners);
             this.tabs.Controls.Add(this.tabPageCategories);
@@ -133,7 +146,6 @@
             this.tabs.Controls.Add(this.tabPageAddEvent);
             this.tabs.Controls.Add(this.tabPageStartNumbers);
             this.tabs.Controls.Add(this.tabResults);
-            this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabs.Location = new System.Drawing.Point(0, 0);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
@@ -199,6 +211,8 @@
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox6.BackColor = System.Drawing.Color.Gainsboro;
+            this.groupBox6.Controls.Add(this.label19);
+            this.groupBox6.Controls.Add(this.cmbRunnerClub);
             this.groupBox6.Controls.Add(this.tbxRunnerResultTime);
             this.groupBox6.Controls.Add(this.label18);
             this.groupBox6.Controls.Add(this.tbxRunnerSearch);
@@ -252,8 +266,9 @@
             // 
             this.tbxRunnerStartNumber.Location = new System.Drawing.Point(346, 43);
             this.tbxRunnerStartNumber.Name = "tbxRunnerStartNumber";
-            this.tbxRunnerStartNumber.Size = new System.Drawing.Size(102, 20);
+            this.tbxRunnerStartNumber.Size = new System.Drawing.Size(55, 20);
             this.tbxRunnerStartNumber.TabIndex = 1;
+            this.tbxRunnerStartNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lbl1
             // 
@@ -267,7 +282,7 @@
             // 
             // btnDeleteRunner
             // 
-            this.btnDeleteRunner.Location = new System.Drawing.Point(371, 158);
+            this.btnDeleteRunner.Location = new System.Drawing.Point(371, 198);
             this.btnDeleteRunner.Name = "btnDeleteRunner";
             this.btnDeleteRunner.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteRunner.TabIndex = 37;
@@ -279,7 +294,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label15.Location = new System.Drawing.Point(268, 130);
+            this.label15.Location = new System.Drawing.Point(268, 155);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(28, 13);
             this.label15.TabIndex = 34;
@@ -304,7 +319,7 @@
             // 
             // btnRunnerSave
             // 
-            this.btnRunnerSave.Location = new System.Drawing.Point(555, 158);
+            this.btnRunnerSave.Location = new System.Drawing.Point(555, 198);
             this.btnRunnerSave.Name = "btnRunnerSave";
             this.btnRunnerSave.Size = new System.Drawing.Size(75, 23);
             this.btnRunnerSave.TabIndex = 5;
@@ -323,7 +338,7 @@
             // 
             // btnNewRunner
             // 
-            this.btnNewRunner.Location = new System.Drawing.Point(463, 158);
+            this.btnNewRunner.Location = new System.Drawing.Point(463, 198);
             this.btnNewRunner.Name = "btnNewRunner";
             this.btnNewRunner.Size = new System.Drawing.Size(75, 23);
             this.btnNewRunner.TabIndex = 38;
@@ -527,6 +542,7 @@
             // 
             // tabPageClubs
             // 
+            this.tabPageClubs.Controls.Add(this.groupBox8);
             this.tabPageClubs.Location = new System.Drawing.Point(4, 22);
             this.tabPageClubs.Name = "tabPageClubs";
             this.tabPageClubs.Padding = new System.Windows.Forms.Padding(3);
@@ -692,7 +708,7 @@
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.tbxReadStartNumber);
             this.groupBox1.Controls.Add(this.tbxReadTag);
-            this.groupBox1.Location = new System.Drawing.Point(10, 287);
+            this.groupBox1.Location = new System.Drawing.Point(10, 275);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(341, 131);
             this.groupBox1.TabIndex = 33;
@@ -836,7 +852,7 @@
             this.lstReadedNumbers.ItemHeight = 16;
             this.lstReadedNumbers.Location = new System.Drawing.Point(6, 186);
             this.lstReadedNumbers.Name = "lstReadedNumbers";
-            this.lstReadedNumbers.Size = new System.Drawing.Size(392, 276);
+            this.lstReadedNumbers.Size = new System.Drawing.Size(392, 260);
             this.lstReadedNumbers.TabIndex = 35;
             // 
             // lblStartNumber
@@ -906,12 +922,106 @@
             // tbxRunnerResultTime
             // 
             this.tbxRunnerResultTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tbxRunnerResultTime.Location = new System.Drawing.Point(346, 125);
-            this.tbxRunnerResultTime.Mask = "?0:00:00";
+            this.tbxRunnerResultTime.Location = new System.Drawing.Point(346, 150);
+            this.tbxRunnerResultTime.Mask = "00:00:00";
             this.tbxRunnerResultTime.Name = "tbxRunnerResultTime";
-            this.tbxRunnerResultTime.Size = new System.Drawing.Size(100, 21);
+            this.tbxRunnerResultTime.Size = new System.Drawing.Size(55, 21);
             this.tbxRunnerResultTime.TabIndex = 42;
             this.tbxRunnerResultTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label19.Location = new System.Drawing.Point(268, 126);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(32, 13);
+            this.label19.TabIndex = 44;
+            this.label19.Text = "Klub";
+            // 
+            // cmbRunnerClub
+            // 
+            this.cmbRunnerClub.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbRunnerClub.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.cmbRunnerClub.CausesValidation = false;
+            this.cmbRunnerClub.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cmbRunnerClub.FormattingEnabled = true;
+            this.cmbRunnerClub.Location = new System.Drawing.Point(346, 123);
+            this.cmbRunnerClub.Name = "cmbRunnerClub";
+            this.cmbRunnerClub.Size = new System.Drawing.Size(284, 21);
+            this.cmbRunnerClub.TabIndex = 43;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox8.BackColor = System.Drawing.Color.Gainsboro;
+            this.groupBox8.Controls.Add(this.label20);
+            this.groupBox8.Controls.Add(this.lstClubs);
+            this.groupBox8.Controls.Add(this.tbxClubName);
+            this.groupBox8.Controls.Add(this.btnNewClub);
+            this.groupBox8.Controls.Add(this.btnDeleteClub);
+            this.groupBox8.Controls.Add(this.btnClubSave);
+            this.groupBox8.Location = new System.Drawing.Point(3, 3);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(707, 468);
+            this.groupBox8.TabIndex = 19;
+            this.groupBox8.TabStop = false;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label20.Location = new System.Drawing.Point(291, 22);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(43, 13);
+            this.label20.TabIndex = 13;
+            this.label20.Text = "Nazov";
+            // 
+            // lstClubs
+            // 
+            this.lstClubs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lstClubs.FormattingEnabled = true;
+            this.lstClubs.Location = new System.Drawing.Point(6, 19);
+            this.lstClubs.Name = "lstClubs";
+            this.lstClubs.Size = new System.Drawing.Size(257, 446);
+            this.lstClubs.TabIndex = 15;
+            // 
+            // tbxClubName
+            // 
+            this.tbxClubName.Location = new System.Drawing.Point(353, 19);
+            this.tbxClubName.Name = "tbxClubName";
+            this.tbxClubName.Size = new System.Drawing.Size(332, 20);
+            this.tbxClubName.TabIndex = 1;
+            // 
+            // btnNewClub
+            // 
+            this.btnNewClub.Location = new System.Drawing.Point(518, 73);
+            this.btnNewClub.Name = "btnNewClub";
+            this.btnNewClub.Size = new System.Drawing.Size(75, 23);
+            this.btnNewClub.TabIndex = 12;
+            this.btnNewClub.Text = "Nový";
+            this.btnNewClub.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteClub
+            // 
+            this.btnDeleteClub.Location = new System.Drawing.Point(426, 73);
+            this.btnDeleteClub.Name = "btnDeleteClub";
+            this.btnDeleteClub.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteClub.TabIndex = 11;
+            this.btnDeleteClub.Text = "Vymaž";
+            this.btnDeleteClub.UseVisualStyleBackColor = true;
+            this.btnDeleteClub.Click += new System.EventHandler(this.btnDeleteClub_Click);
+            // 
+            // btnClubSave
+            // 
+            this.btnClubSave.Location = new System.Drawing.Point(610, 73);
+            this.btnClubSave.Name = "btnClubSave";
+            this.btnClubSave.Size = new System.Drawing.Size(75, 23);
+            this.btnClubSave.TabIndex = 6;
+            this.btnClubSave.Text = "Ulož";
+            this.btnClubSave.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -934,6 +1044,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numCatLaps)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCatMinLapTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCatStartOffset)).EndInit();
+            this.tabPageClubs.ResumeLayout(false);
             this.tabPageAddEvent.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -947,6 +1058,8 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgStartNumbers)).EndInit();
             this.tabResults.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1027,6 +1140,15 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.ListBox lstReadedNumbers;
         private System.Windows.Forms.MaskedTextBox tbxRunnerResultTime;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.ComboBox cmbRunnerClub;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ListBox lstClubs;
+        private System.Windows.Forms.TextBox tbxClubName;
+        private System.Windows.Forms.Button btnNewClub;
+        private System.Windows.Forms.Button btnDeleteClub;
+        private System.Windows.Forms.Button btnClubSave;
     }
 }
 

@@ -89,10 +89,12 @@
     <Compile Include="Models\E_Events.cs" />
     <Compile Include="Models\E_NumberTag.cs" />
     <Compile Include="Models\E_Category.cs" />
+    <Compile Include="Models\E_Club.cs" />
     <Compile Include="Models\E_Runners.cs" />
     <Compile Include="Models\Mapping\E_CategoryMap.cs" />
     <Compile Include="Models\Mapping\E_EventsMap.cs" />
     <Compile Include="Models\Mapping\E_NumberTagMap.cs" />
+    <Compile Include="Models\Mapping\E_ClubMap.cs" />
     <Compile Include="Models\Mapping\E_RunnersMap.cs" />
     <Compile Include="Models\Mapping\R_TagReadMap.cs" />
     <Compile Include="Models\ResultLap.cs" />
