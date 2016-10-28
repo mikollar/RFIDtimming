@@ -282,10 +282,10 @@
             // 
             // btnDeleteRunner
             // 
-            this.btnDeleteRunner.Location = new System.Drawing.Point(371, 198);
+            this.btnDeleteRunner.Location = new System.Drawing.Point(271, 198);
             this.btnDeleteRunner.Name = "btnDeleteRunner";
             this.btnDeleteRunner.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteRunner.TabIndex = 37;
+            this.btnDeleteRunner.TabIndex = 8;
             this.btnDeleteRunner.Text = "Vymaž";
             this.btnDeleteRunner.UseVisualStyleBackColor = true;
             this.btnDeleteRunner.Click += new System.EventHandler(this.btnDeleteRunner_Click);
@@ -322,7 +322,7 @@
             this.btnRunnerSave.Location = new System.Drawing.Point(555, 198);
             this.btnRunnerSave.Name = "btnRunnerSave";
             this.btnRunnerSave.Size = new System.Drawing.Size(75, 23);
-            this.btnRunnerSave.TabIndex = 5;
+            this.btnRunnerSave.TabIndex = 6;
             this.btnRunnerSave.Text = "Ulož";
             this.btnRunnerSave.UseVisualStyleBackColor = true;
             this.btnRunnerSave.Click += new System.EventHandler(this.btnRunnerSave_Click);
@@ -341,7 +341,7 @@
             this.btnNewRunner.Location = new System.Drawing.Point(463, 198);
             this.btnNewRunner.Name = "btnNewRunner";
             this.btnNewRunner.Size = new System.Drawing.Size(75, 23);
-            this.btnNewRunner.TabIndex = 38;
+            this.btnNewRunner.TabIndex = 7;
             this.btnNewRunner.Text = "Nový";
             this.btnNewRunner.UseVisualStyleBackColor = true;
             this.btnNewRunner.Click += new System.EventHandler(this.btnNewRunner_Click);
@@ -492,7 +492,7 @@
             // 
             // btnCatDelete
             // 
-            this.btnCatDelete.Location = new System.Drawing.Point(426, 211);
+            this.btnCatDelete.Location = new System.Drawing.Point(294, 211);
             this.btnCatDelete.Name = "btnCatDelete";
             this.btnCatDelete.Size = new System.Drawing.Size(75, 23);
             this.btnCatDelete.TabIndex = 11;
@@ -926,7 +926,7 @@
             this.tbxRunnerResultTime.Mask = "00:00:00";
             this.tbxRunnerResultTime.Name = "tbxRunnerResultTime";
             this.tbxRunnerResultTime.Size = new System.Drawing.Size(55, 21);
-            this.tbxRunnerResultTime.TabIndex = 42;
+            this.tbxRunnerResultTime.TabIndex = 5;
             this.tbxRunnerResultTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label19
@@ -942,14 +942,14 @@
             // cmbRunnerClub
             // 
             this.cmbRunnerClub.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cmbRunnerClub.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.cmbRunnerClub.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbRunnerClub.CausesValidation = false;
             this.cmbRunnerClub.Cursor = System.Windows.Forms.Cursors.Default;
             this.cmbRunnerClub.FormattingEnabled = true;
             this.cmbRunnerClub.Location = new System.Drawing.Point(346, 123);
             this.cmbRunnerClub.Name = "cmbRunnerClub";
             this.cmbRunnerClub.Size = new System.Drawing.Size(284, 21);
-            this.cmbRunnerClub.TabIndex = 43;
+            this.cmbRunnerClub.TabIndex = 4;
             // 
             // groupBox8
             // 
@@ -1006,7 +1006,7 @@
             // 
             // btnDeleteClub
             // 
-            this.btnDeleteClub.Location = new System.Drawing.Point(426, 73);
+            this.btnDeleteClub.Location = new System.Drawing.Point(294, 73);
             this.btnDeleteClub.Name = "btnDeleteClub";
             this.btnDeleteClub.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteClub.TabIndex = 11;
