@@ -359,6 +359,9 @@ namespace RFIDTimming
 
                     tbxReadStartNumber.Text = rfidRead.StartNumber;
                     lblStartNumber.Text = rfidRead.StartNumber;
+
+                    nmrFromStartNumber.Value = rfidRead.NextAssignNumber ?? 0;
+
                     if (rfidRead.Tag != null)
                     {
                         tbxReadTag.Text = rfidRead.Tag.TagID;

@@ -711,6 +711,7 @@
             // 
             // tbxReadTime
             // 
+            this.tbxReadTime.Enabled = false;
             this.tbxReadTime.Location = new System.Drawing.Point(68, 45);
             this.tbxReadTime.Name = "tbxReadTime";
             this.tbxReadTime.Size = new System.Drawing.Size(106, 20);
@@ -728,6 +729,7 @@
             // 
             // tbxReadRunner
             // 
+            this.tbxReadRunner.Enabled = false;
             this.tbxReadRunner.Location = new System.Drawing.Point(68, 97);
             this.tbxReadRunner.Name = "tbxReadRunner";
             this.tbxReadRunner.Size = new System.Drawing.Size(267, 20);
@@ -755,6 +757,7 @@
             // 
             // tbxReadStartNumber
             // 
+            this.tbxReadStartNumber.Enabled = false;
             this.tbxReadStartNumber.Location = new System.Drawing.Point(68, 71);
             this.tbxReadStartNumber.Name = "tbxReadStartNumber";
             this.tbxReadStartNumber.Size = new System.Drawing.Size(106, 20);
@@ -762,6 +765,7 @@
             // 
             // tbxReadTag
             // 
+            this.tbxReadTag.Enabled = false;
             this.tbxReadTag.Location = new System.Drawing.Point(68, 19);
             this.tbxReadTag.Name = "tbxReadTag";
             this.tbxReadTag.Size = new System.Drawing.Size(267, 20);

@@ -15,6 +15,8 @@ namespace RFIDTimming.Models
 
         public int Lap { get; set; }
 
+        public int? NextAssignNumber { get; set; }
+
         public bool Finish { get; set; }
 
         public string Error { get; set; }
