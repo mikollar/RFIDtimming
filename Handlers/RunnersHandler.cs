@@ -58,8 +58,9 @@ namespace RFIDTimming.Handlers
         /// <param name="club"></param>
         /// <param name="startNumber"></param>
         /// <returns></returns>
-        public string CreateUpdateRunner(int runnerID, string name, string categoryCode, int? clubID, string club, string startNumber, string resultTime)
+        public string CreateUpdateRunner(int runnerID, string name, string categoryCode, int? clubID, string club, string startNumber, string resultTime, out E_Runners runner)
         {
+            runner = null;
             // check if start number is already assigned
             if(!string.IsNullOrEmpty(startNumber))
             {
@@ -79,7 +80,7 @@ namespace RFIDTimming.Handlers
                 }
 
                 // get runner
-                var runner = this.GetRunner(runnerID, false);
+                runner = this.GetRunner(runnerID, false);
                 // create if not exist
                 if (runner == null)
                 {

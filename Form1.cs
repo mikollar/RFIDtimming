@@ -492,6 +492,8 @@ namespace RFIDTimming
         {
             lstRunners.DisplayMember = "ShowNameList";
             lstRunners.DataSource = new RunnersHandler(evHandler.GetActiveEvent(), evHandler.Context).GetRunners();
+
+            lstRunners.SelectedIndex = -1;
         }
 
         // On change selected runner
@@ -597,8 +599,9 @@ namespace RFIDTimming
                 clubID = ((E_Club)cmbRunnerClub.SelectedItem).ClubID;
             }
 
+            E_Runners createdRunner = null;
             // save to DB
-            var msg = new RunnersHandler(evHandler.GetActiveEvent(), evHandler.Context).CreateUpdateRunner(runnerID, tbxRunnerName.Text, runnerCategory.CategoryID, clubID, cmbRunnerClub.Text, tbxRunnerStartNumber.Text, tbxRunnerResultTime.Text);
+            var msg = new RunnersHandler(evHandler.GetActiveEvent(), evHandler.Context).CreateUpdateRunner(runnerID, tbxRunnerName.Text, runnerCategory.CategoryID, clubID, cmbRunnerClub.Text, tbxRunnerStartNumber.Text, tbxRunnerResultTime.Text, out createdRunner);
             this.ReloadRunners();
 
             if(!string.IsNullOrEmpty(msg))
@@ -611,6 +614,12 @@ namespace RFIDTimming
             }
 
             this.ReloadRunnerClubs();
+
+            if(createdRunner != null)
+            {
+                lstRunners.SelectedItem = createdRunner;
+            }
+
         }
 
         // Clear form to add new runner
@@ -690,6 +699,16 @@ namespace RFIDTimming
         private void btnDeleteClub_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string[] clipboardRows = Clipboard.GetText(TextDataFormat.UnicodeText).Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+            foreach (var item in clipboardRows)
+            {
+                var columns = (item ?? "").Split('\t');
+            }
         }
     }
 }

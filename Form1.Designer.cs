@@ -112,6 +112,7 @@
             this.btnNewClub = new System.Windows.Forms.Button();
             this.btnDeleteClub = new System.Windows.Forms.Button();
             this.btnClubSave = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabs.SuspendLayout();
             this.tabPageCompetition.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -211,6 +212,7 @@
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox6.BackColor = System.Drawing.Color.Gainsboro;
+            this.groupBox6.Controls.Add(this.button1);
             this.groupBox6.Controls.Add(this.label19);
             this.groupBox6.Controls.Add(this.cmbRunnerClub);
             this.groupBox6.Controls.Add(this.tbxRunnerResultTime);
@@ -1023,6 +1025,16 @@
             this.btnClubSave.Text = "Ulož";
             this.btnClubSave.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(555, 429);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 45;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1149,6 +1161,7 @@
         private System.Windows.Forms.Button btnNewClub;
         private System.Windows.Forms.Button btnDeleteClub;
         private System.Windows.Forms.Button btnClubSave;
+        private System.Windows.Forms.Button button1;
     }
 }
 
