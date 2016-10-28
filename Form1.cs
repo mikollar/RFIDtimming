@@ -385,7 +385,7 @@ namespace RFIDTimming
 
                         if (rfidRead.Finish == true || rfidRead.Lap > 0)
                         {
-                            this.ReadedNumbers.Add(rfidRead.Tag.ReadTime.ToString("h\\:mm\\:ss") + " \t " + rfidRead.StartNumber + " \t" + info);
+                            this.ReadedNumbers.Add(rfidRead.Tag.ReadTime.ToString("h\\:mm\\:ss") + " \t " + rfidRead.StartNumber.PadLeft(5, ' ') + " \t" + info);
                             lstReadedNumbers.DataSource = this.ReadedNumbers.OrderByDescending(o => o).ToList();
                         }
 
@@ -502,7 +502,7 @@ namespace RFIDTimming
                         }
 
                     }
-                    tbxRunnerResultTime.Text = runner.ResultTime.HasValue ? runner.ResultTime.Value.ToString("h\\:mm\\:ss") : "";
+                    tbxRunnerResultTime.Text = runner.ResultTime.HasValue ? runner.ResultTime.Value.ToString("hh\\:mm\\:ss") : "";
                 }
             }
             else

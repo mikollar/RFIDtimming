@@ -44,7 +44,7 @@ namespace RFIDTimming.Handlers
                 {
                     // to the IP address or hostname of your reader.
                     reader.Connect("192.168.1.101", 5084);
-
+              //      reader.
                     // add disconnect event
                     reader.DirectionReported += Reader_DirectionReported;
                 }
@@ -175,6 +175,7 @@ namespace RFIDTimming.Handlers
                     }
                     else
                     {
+
                         internalContext.E_NumberTag.Add(new E_NumberTag
                         {
                             BibNumber = this.FirstStartNumber.ToString(),

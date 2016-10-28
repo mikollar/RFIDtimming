@@ -22,9 +22,9 @@ namespace RFIDTimming.Data
             {
                 this.Configuration.LazyLoadingEnabled = false;
                 this.Configuration.ProxyCreationEnabled = true;
-            //  Database.SetInitializer<Context>(null);
+              Database.SetInitializer<Context>(null);
 
-            Database.SetInitializer<Context>(new DropCreateDatabaseIfModelChanges<Context>());
+         //   Database.SetInitializer<Context>(new DropCreateDatabaseIfModelChanges<Context>());
         }
 
 

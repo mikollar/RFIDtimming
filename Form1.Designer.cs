@@ -36,6 +36,7 @@
             this.btnOpenEvent = new System.Windows.Forms.Button();
             this.tabPageRunners = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.tbxRunnerResultTime = new System.Windows.Forms.MaskedTextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.tbxRunnerSearch = new System.Windows.Forms.TextBox();
             this.lstRunners = new System.Windows.Forms.ListBox();
@@ -51,6 +52,7 @@
             this.tabPageCategories = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.lstCategories = new System.Windows.Forms.ListBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -65,7 +67,6 @@
             this.numCatMinLapTime = new System.Windows.Forms.NumericUpDown();
             this.btnCatSave = new System.Windows.Forms.Button();
             this.numCatStartOffset = new System.Windows.Forms.NumericUpDown();
-            this.lstCategories = new System.Windows.Forms.ListBox();
             this.tabPageClubs = new System.Windows.Forms.TabPage();
             this.tabPageAddEvent = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -102,7 +103,6 @@
             this.tabResults = new System.Windows.Forms.TabPage();
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.tmrProcessRFID = new System.Windows.Forms.Timer(this.components);
-            this.tbxRunnerResultTime = new System.Windows.Forms.MaskedTextBox();
             this.tabs.SuspendLayout();
             this.tabPageCompetition.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -217,6 +217,16 @@
             this.groupBox6.Size = new System.Drawing.Size(661, 468);
             this.groupBox6.TabIndex = 42;
             this.groupBox6.TabStop = false;
+            // 
+            // tbxRunnerResultTime
+            // 
+            this.tbxRunnerResultTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.tbxRunnerResultTime.Location = new System.Drawing.Point(346, 125);
+            this.tbxRunnerResultTime.Mask = "00:00:00";
+            this.tbxRunnerResultTime.Name = "tbxRunnerResultTime";
+            this.tbxRunnerResultTime.Size = new System.Drawing.Size(100, 21);
+            this.tbxRunnerResultTime.TabIndex = 42;
+            this.tbxRunnerResultTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label18
             // 
@@ -379,6 +389,17 @@
             this.label7.TabIndex = 13;
             this.label7.Text = "Kod";
             // 
+            // lstCategories
+            // 
+            this.lstCategories.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lstCategories.FormattingEnabled = true;
+            this.lstCategories.Location = new System.Drawing.Point(6, 19);
+            this.lstCategories.Name = "lstCategories";
+            this.lstCategories.Size = new System.Drawing.Size(257, 446);
+            this.lstCategories.TabIndex = 15;
+            this.lstCategories.SelectedIndexChanged += new System.EventHandler(this.lstCategories_SelectedIndexChanged);
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -513,17 +534,6 @@
             this.numCatStartOffset.Name = "numCatStartOffset";
             this.numCatStartOffset.Size = new System.Drawing.Size(65, 20);
             this.numCatStartOffset.TabIndex = 5;
-            // 
-            // lstCategories
-            // 
-            this.lstCategories.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lstCategories.FormattingEnabled = true;
-            this.lstCategories.Location = new System.Drawing.Point(6, 19);
-            this.lstCategories.Name = "lstCategories";
-            this.lstCategories.Size = new System.Drawing.Size(257, 446);
-            this.lstCategories.TabIndex = 15;
-            this.lstCategories.SelectedIndexChanged += new System.EventHandler(this.lstCategories_SelectedIndexChanged);
             // 
             // tabPageClubs
             // 
@@ -898,16 +908,6 @@
             // 
             this.tmrProcessRFID.Interval = 50;
             this.tmrProcessRFID.Tick += new System.EventHandler(this.tmrProcessRFID_Tick);
-            // 
-            // tbxRunnerResultTime
-            // 
-            this.tbxRunnerResultTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tbxRunnerResultTime.Location = new System.Drawing.Point(346, 125);
-            this.tbxRunnerResultTime.Mask = "?0:00:00";
-            this.tbxRunnerResultTime.Name = "tbxRunnerResultTime";
-            this.tbxRunnerResultTime.Size = new System.Drawing.Size(100, 21);
-            this.tbxRunnerResultTime.TabIndex = 42;
-            this.tbxRunnerResultTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // Form1
             // 
