@@ -154,13 +154,16 @@ namespace RFIDTimming
             tabs.TabPages.Remove(tabPageCategories);
             tabs.TabPages.Remove(tabPageClubs);
             tabs.TabPages.Remove(tabPageCompetition);
+            tabs.TabPages.Remove(tabPageAddEvent);
 
+            // event is opened
             // event is opened
             if (evHandler.ActiveEventID != null)
             {
-                tabs.TabPages.Insert(0, tabPageRunners);
-                tabs.TabPages.Insert(1, tabPageCategories);
-                tabs.TabPages.Insert(2, tabPageClubs);
+                tabs.TabPages.Insert(0, tabPageAddEvent);
+                tabs.TabPages.Insert(1, tabPageRunners);
+                tabs.TabPages.Insert(2, tabPageCategories);
+                tabs.TabPages.Insert(3, tabPageClubs);
 
                 btnCloseEvent.Show();
 
@@ -169,6 +172,7 @@ namespace RFIDTimming
             else
             {
                 tabs.TabPages.Insert(0, tabPageCompetition);
+                tabs.TabPages.Insert(1, tabPageAddEvent);
                 btnCloseEvent.Hide();
 
                 tabPageAddEvent.Text = "Nový pretek";

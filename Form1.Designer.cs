@@ -103,7 +103,7 @@
             this.tabResults = new System.Windows.Forms.TabPage();
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.tmrProcessRFID = new System.Windows.Forms.Timer(this.components);
-            this.tbxRunnerResultTime = new System.Windows.Forms.MaskedTextBox();
+          //  this.tbxRunnerResultTime = new System.Windows.Forms.MaskedTextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.cmbRunnerClub = new System.Windows.Forms.ComboBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
@@ -236,14 +236,14 @@
             this.groupBox6.TabStop = false;
             // 
             // tbxRunnerResultTime
-            // 
-            this.tbxRunnerResultTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tbxRunnerResultTime.Location = new System.Drawing.Point(346, 125);
-            this.tbxRunnerResultTime.Mask = "00:00:00";
-            this.tbxRunnerResultTime.Name = "tbxRunnerResultTime";
-            this.tbxRunnerResultTime.Size = new System.Drawing.Size(100, 21);
-            this.tbxRunnerResultTime.TabIndex = 42;
-            this.tbxRunnerResultTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            //// 
+            //this.tbxRunnerResultTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            //this.tbxRunnerResultTime.Location = new System.Drawing.Point(346, 125);
+            //this.tbxRunnerResultTime.Mask = "00:00:00";
+            //this.tbxRunnerResultTime.Name = "tbxRunnerResultTime";
+            //this.tbxRunnerResultTime.Size = new System.Drawing.Size(100, 21);
+            //this.tbxRunnerResultTime.TabIndex = 42;
+            //this.tbxRunnerResultTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label18
             // 
