@@ -47,3 +47,4 @@ C:\Users\miro\Source\Repos\RFIDtimming\obj\Debug\RFIDTimming.Properties.Resource
 C:\Users\miro\Source\Repos\RFIDtimming\obj\Debug\RFIDTimming.csproj.GenerateResource.Cache
 C:\Users\miro\Source\Repos\RFIDtimming\obj\Debug\RFIDTimming.exe
 C:\Users\miro\Source\Repos\RFIDtimming\obj\Debug\RFIDTimming.pdb
+C:\Users\miro\Source\Repos\RFIDtimming\obj\Debug\RFIDTimming.csprojResolveAssemblyReference.cache

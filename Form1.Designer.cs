@@ -36,6 +36,9 @@
             this.btnOpenEvent = new System.Windows.Forms.Button();
             this.tabPageRunners = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.cmbRunnerClub = new System.Windows.Forms.ComboBox();
             this.tbxRunnerResultTime = new System.Windows.Forms.MaskedTextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.tbxRunnerSearch = new System.Windows.Forms.TextBox();
@@ -68,6 +71,13 @@
             this.btnCatSave = new System.Windows.Forms.Button();
             this.numCatStartOffset = new System.Windows.Forms.NumericUpDown();
             this.tabPageClubs = new System.Windows.Forms.TabPage();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.lstClubs = new System.Windows.Forms.ListBox();
+            this.tbxClubName = new System.Windows.Forms.TextBox();
+            this.btnNewClub = new System.Windows.Forms.Button();
+            this.btnDeleteClub = new System.Windows.Forms.Button();
+            this.btnClubSave = new System.Windows.Forms.Button();
             this.tabPageAddEvent = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -103,17 +113,6 @@
             this.tabResults = new System.Windows.Forms.TabPage();
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.tmrProcessRFID = new System.Windows.Forms.Timer(this.components);
-          //  this.tbxRunnerResultTime = new System.Windows.Forms.MaskedTextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.cmbRunnerClub = new System.Windows.Forms.ComboBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.lstClubs = new System.Windows.Forms.ListBox();
-            this.tbxClubName = new System.Windows.Forms.TextBox();
-            this.btnNewClub = new System.Windows.Forms.Button();
-            this.btnDeleteClub = new System.Windows.Forms.Button();
-            this.btnClubSave = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabs.SuspendLayout();
             this.tabPageCompetition.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -125,6 +124,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numCatMinLapTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCatStartOffset)).BeginInit();
             this.tabPageClubs.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.tabPageAddEvent.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tabPageStartNumbers.SuspendLayout();
@@ -134,7 +134,6 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgStartNumbers)).BeginInit();
             this.tabResults.SuspendLayout();
-            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabs
@@ -235,15 +234,47 @@
             this.groupBox6.TabIndex = 42;
             this.groupBox6.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(555, 429);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 45;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label19.Location = new System.Drawing.Point(268, 126);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(32, 13);
+            this.label19.TabIndex = 44;
+            this.label19.Text = "Klub";
+            // 
+            // cmbRunnerClub
+            // 
+            this.cmbRunnerClub.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbRunnerClub.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbRunnerClub.CausesValidation = false;
+            this.cmbRunnerClub.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cmbRunnerClub.FormattingEnabled = true;
+            this.cmbRunnerClub.Location = new System.Drawing.Point(346, 123);
+            this.cmbRunnerClub.Name = "cmbRunnerClub";
+            this.cmbRunnerClub.Size = new System.Drawing.Size(284, 21);
+            this.cmbRunnerClub.TabIndex = 4;
+            // 
             // tbxRunnerResultTime
-            //// 
-            //this.tbxRunnerResultTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            //this.tbxRunnerResultTime.Location = new System.Drawing.Point(346, 125);
-            //this.tbxRunnerResultTime.Mask = "00:00:00";
-            //this.tbxRunnerResultTime.Name = "tbxRunnerResultTime";
-            //this.tbxRunnerResultTime.Size = new System.Drawing.Size(100, 21);
-            //this.tbxRunnerResultTime.TabIndex = 42;
-            //this.tbxRunnerResultTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            this.tbxRunnerResultTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.tbxRunnerResultTime.Location = new System.Drawing.Point(346, 150);
+            this.tbxRunnerResultTime.Mask = "00:00:00";
+            this.tbxRunnerResultTime.Name = "tbxRunnerResultTime";
+            this.tbxRunnerResultTime.Size = new System.Drawing.Size(55, 21);
+            this.tbxRunnerResultTime.TabIndex = 5;
+            this.tbxRunnerResultTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label18
             // 
@@ -527,6 +558,11 @@
             // numCatMinLapTime
             // 
             this.numCatMinLapTime.Location = new System.Drawing.Point(401, 121);
+            this.numCatMinLapTime.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.numCatMinLapTime.Name = "numCatMinLapTime";
             this.numCatMinLapTime.Size = new System.Drawing.Size(65, 20);
             this.numCatMinLapTime.TabIndex = 4;
@@ -549,6 +585,11 @@
             // numCatStartOffset
             // 
             this.numCatStartOffset.Location = new System.Drawing.Point(401, 156);
+            this.numCatStartOffset.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.numCatStartOffset.Name = "numCatStartOffset";
             this.numCatStartOffset.Size = new System.Drawing.Size(65, 20);
             this.numCatStartOffset.TabIndex = 5;
@@ -563,6 +604,78 @@
             this.tabPageClubs.TabIndex = 3;
             this.tabPageClubs.Text = "Kluby";
             this.tabPageClubs.UseVisualStyleBackColor = true;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox8.BackColor = System.Drawing.Color.Gainsboro;
+            this.groupBox8.Controls.Add(this.label20);
+            this.groupBox8.Controls.Add(this.lstClubs);
+            this.groupBox8.Controls.Add(this.tbxClubName);
+            this.groupBox8.Controls.Add(this.btnNewClub);
+            this.groupBox8.Controls.Add(this.btnDeleteClub);
+            this.groupBox8.Controls.Add(this.btnClubSave);
+            this.groupBox8.Location = new System.Drawing.Point(3, 3);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(707, 468);
+            this.groupBox8.TabIndex = 19;
+            this.groupBox8.TabStop = false;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label20.Location = new System.Drawing.Point(291, 22);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(43, 13);
+            this.label20.TabIndex = 13;
+            this.label20.Text = "Nazov";
+            // 
+            // lstClubs
+            // 
+            this.lstClubs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lstClubs.FormattingEnabled = true;
+            this.lstClubs.Location = new System.Drawing.Point(6, 19);
+            this.lstClubs.Name = "lstClubs";
+            this.lstClubs.Size = new System.Drawing.Size(257, 446);
+            this.lstClubs.TabIndex = 15;
+            // 
+            // tbxClubName
+            // 
+            this.tbxClubName.Location = new System.Drawing.Point(353, 19);
+            this.tbxClubName.Name = "tbxClubName";
+            this.tbxClubName.Size = new System.Drawing.Size(332, 20);
+            this.tbxClubName.TabIndex = 1;
+            // 
+            // btnNewClub
+            // 
+            this.btnNewClub.Location = new System.Drawing.Point(518, 73);
+            this.btnNewClub.Name = "btnNewClub";
+            this.btnNewClub.Size = new System.Drawing.Size(75, 23);
+            this.btnNewClub.TabIndex = 12;
+            this.btnNewClub.Text = "Nový";
+            this.btnNewClub.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteClub
+            // 
+            this.btnDeleteClub.Location = new System.Drawing.Point(294, 73);
+            this.btnDeleteClub.Name = "btnDeleteClub";
+            this.btnDeleteClub.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteClub.TabIndex = 11;
+            this.btnDeleteClub.Text = "Vymaž";
+            this.btnDeleteClub.UseVisualStyleBackColor = true;
+            this.btnDeleteClub.Click += new System.EventHandler(this.btnDeleteClub_Click);
+            // 
+            // btnClubSave
+            // 
+            this.btnClubSave.Location = new System.Drawing.Point(610, 73);
+            this.btnClubSave.Name = "btnClubSave";
+            this.btnClubSave.Size = new System.Drawing.Size(75, 23);
+            this.btnClubSave.TabIndex = 6;
+            this.btnClubSave.Text = "Ulož";
+            this.btnClubSave.UseVisualStyleBackColor = true;
             // 
             // tabPageAddEvent
             // 
@@ -803,6 +916,11 @@
             // nmrFromStartNumber
             // 
             this.nmrFromStartNumber.Location = new System.Drawing.Point(86, 101);
+            this.nmrFromStartNumber.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.nmrFromStartNumber.Name = "nmrFromStartNumber";
             this.nmrFromStartNumber.Size = new System.Drawing.Size(65, 20);
             this.nmrFromStartNumber.TabIndex = 28;
@@ -932,120 +1050,6 @@
             this.tmrProcessRFID.Interval = 50;
             this.tmrProcessRFID.Tick += new System.EventHandler(this.tmrProcessRFID_Tick);
             // 
-            // tbxRunnerResultTime
-            // 
-            this.tbxRunnerResultTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tbxRunnerResultTime.Location = new System.Drawing.Point(346, 150);
-            this.tbxRunnerResultTime.Mask = "00:00:00";
-            this.tbxRunnerResultTime.Name = "tbxRunnerResultTime";
-            this.tbxRunnerResultTime.Size = new System.Drawing.Size(55, 21);
-            this.tbxRunnerResultTime.TabIndex = 5;
-            this.tbxRunnerResultTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label19.Location = new System.Drawing.Point(268, 126);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(32, 13);
-            this.label19.TabIndex = 44;
-            this.label19.Text = "Klub";
-            // 
-            // cmbRunnerClub
-            // 
-            this.cmbRunnerClub.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cmbRunnerClub.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbRunnerClub.CausesValidation = false;
-            this.cmbRunnerClub.Cursor = System.Windows.Forms.Cursors.Default;
-            this.cmbRunnerClub.FormattingEnabled = true;
-            this.cmbRunnerClub.Location = new System.Drawing.Point(346, 123);
-            this.cmbRunnerClub.Name = "cmbRunnerClub";
-            this.cmbRunnerClub.Size = new System.Drawing.Size(284, 21);
-            this.cmbRunnerClub.TabIndex = 4;
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox8.BackColor = System.Drawing.Color.Gainsboro;
-            this.groupBox8.Controls.Add(this.label20);
-            this.groupBox8.Controls.Add(this.lstClubs);
-            this.groupBox8.Controls.Add(this.tbxClubName);
-            this.groupBox8.Controls.Add(this.btnNewClub);
-            this.groupBox8.Controls.Add(this.btnDeleteClub);
-            this.groupBox8.Controls.Add(this.btnClubSave);
-            this.groupBox8.Location = new System.Drawing.Point(3, 3);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(707, 468);
-            this.groupBox8.TabIndex = 19;
-            this.groupBox8.TabStop = false;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label20.Location = new System.Drawing.Point(291, 22);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(43, 13);
-            this.label20.TabIndex = 13;
-            this.label20.Text = "Nazov";
-            // 
-            // lstClubs
-            // 
-            this.lstClubs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lstClubs.FormattingEnabled = true;
-            this.lstClubs.Location = new System.Drawing.Point(6, 19);
-            this.lstClubs.Name = "lstClubs";
-            this.lstClubs.Size = new System.Drawing.Size(257, 446);
-            this.lstClubs.TabIndex = 15;
-            // 
-            // tbxClubName
-            // 
-            this.tbxClubName.Location = new System.Drawing.Point(353, 19);
-            this.tbxClubName.Name = "tbxClubName";
-            this.tbxClubName.Size = new System.Drawing.Size(332, 20);
-            this.tbxClubName.TabIndex = 1;
-            // 
-            // btnNewClub
-            // 
-            this.btnNewClub.Location = new System.Drawing.Point(518, 73);
-            this.btnNewClub.Name = "btnNewClub";
-            this.btnNewClub.Size = new System.Drawing.Size(75, 23);
-            this.btnNewClub.TabIndex = 12;
-            this.btnNewClub.Text = "Nový";
-            this.btnNewClub.UseVisualStyleBackColor = true;
-            // 
-            // btnDeleteClub
-            // 
-            this.btnDeleteClub.Location = new System.Drawing.Point(294, 73);
-            this.btnDeleteClub.Name = "btnDeleteClub";
-            this.btnDeleteClub.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteClub.TabIndex = 11;
-            this.btnDeleteClub.Text = "Vymaž";
-            this.btnDeleteClub.UseVisualStyleBackColor = true;
-            this.btnDeleteClub.Click += new System.EventHandler(this.btnDeleteClub_Click);
-            // 
-            // btnClubSave
-            // 
-            this.btnClubSave.Location = new System.Drawing.Point(610, 73);
-            this.btnClubSave.Name = "btnClubSave";
-            this.btnClubSave.Size = new System.Drawing.Size(75, 23);
-            this.btnClubSave.TabIndex = 6;
-            this.btnClubSave.Text = "Ulož";
-            this.btnClubSave.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(555, 429);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 45;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1068,6 +1072,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numCatMinLapTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCatStartOffset)).EndInit();
             this.tabPageClubs.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.tabPageAddEvent.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -1081,8 +1087,6 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgStartNumbers)).EndInit();
             this.tabResults.ResumeLayout(false);
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
 
         }

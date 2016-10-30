@@ -185,9 +185,10 @@ namespace RFIDTimming.Handlers
 
                         // move to next number
                         this.FirstStartNumber++;
+                        returnRead.NextAssignNumber = this.FirstStartNumber;
                     }
 
-                    returnRead.NextAssignNumber = this.FirstStartNumber;
+                    
                     #endregion
                 }
                 // read tag an write to table
