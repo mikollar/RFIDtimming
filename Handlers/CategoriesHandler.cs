@@ -103,5 +103,23 @@ namespace RFIDTimming.Handlers
             return string.Empty;
         }
 
+        /// <summary>
+        /// Set categories start time
+        /// </summary>
+        /// <param name="categs"></param>
+        /// <param name="startOffset"></param>
+        public void StartCategories(List<string> categs, int startOffset)
+        {
+            foreach (var item in categs)
+            {
+                var categ = this.GetCategory(item);
+                if(categ != null)
+                {
+                    categ.OffsetStartTime = startOffset;
+                }
+            }
+            this.Context.Commit();
+        }
+
     }
 }

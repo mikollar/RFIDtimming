@@ -112,7 +112,13 @@
             this.button3 = new System.Windows.Forms.Button();
             this.tabResults = new System.Windows.Forms.TabPage();
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.tabPageStart = new System.Windows.Forms.TabPage();
+            this.btnStartCategories = new System.Windows.Forms.Button();
+            this.dgrStartCategories = new System.Windows.Forms.DataGridView();
             this.tmrProcessRFID = new System.Windows.Forms.Timer(this.components);
+            this.dgrCategoriesTime = new System.Windows.Forms.DataGridView();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.tabs.SuspendLayout();
             this.tabPageCompetition.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -134,6 +140,9 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgStartNumbers)).BeginInit();
             this.tabResults.SuspendLayout();
+            this.tabPageStart.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrStartCategories)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrCategoriesTime)).BeginInit();
             this.SuspendLayout();
             // 
             // tabs
@@ -147,6 +156,7 @@
             this.tabs.Controls.Add(this.tabPageAddEvent);
             this.tabs.Controls.Add(this.tabPageStartNumbers);
             this.tabs.Controls.Add(this.tabResults);
+            this.tabs.Controls.Add(this.tabPageStart);
             this.tabs.Location = new System.Drawing.Point(0, 0);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
@@ -559,7 +569,7 @@
             // 
             this.numCatMinLapTime.Location = new System.Drawing.Point(401, 121);
             this.numCatMinLapTime.Maximum = new decimal(new int[] {
-            10000,
+            100000,
             0,
             0,
             0});
@@ -586,13 +596,23 @@
             // 
             this.numCatStartOffset.Location = new System.Drawing.Point(401, 156);
             this.numCatStartOffset.Maximum = new decimal(new int[] {
-            10000,
+            100000,
             0,
             0,
             0});
+            this.numCatStartOffset.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
             this.numCatStartOffset.Name = "numCatStartOffset";
             this.numCatStartOffset.Size = new System.Drawing.Size(65, 20);
             this.numCatStartOffset.TabIndex = 5;
+            this.numCatStartOffset.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
             // 
             // tabPageClubs
             // 
@@ -988,13 +1008,14 @@
             // 
             // lblStartNumber
             // 
-            this.lblStartNumber.AutoSize = true;
+            this.lblStartNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblStartNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 118.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblStartNumber.Location = new System.Drawing.Point(235, 16);
+            this.lblStartNumber.Location = new System.Drawing.Point(6, 16);
             this.lblStartNumber.Name = "lblStartNumber";
-            this.lblStartNumber.Size = new System.Drawing.Size(163, 179);
+            this.lblStartNumber.Size = new System.Drawing.Size(392, 179);
             this.lblStartNumber.TabIndex = 34;
             this.lblStartNumber.Text = "0";
+            this.lblStartNumber.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // dtgStartNumbers
             // 
@@ -1045,10 +1066,97 @@
             this.reportViewer.Size = new System.Drawing.Size(1172, 434);
             this.reportViewer.TabIndex = 4;
             // 
+            // tabPageStart
+            // 
+            this.tabPageStart.Controls.Add(this.label22);
+            this.tabPageStart.Controls.Add(this.label21);
+            this.tabPageStart.Controls.Add(this.dgrCategoriesTime);
+            this.tabPageStart.Controls.Add(this.btnStartCategories);
+            this.tabPageStart.Controls.Add(this.dgrStartCategories);
+            this.tabPageStart.Location = new System.Drawing.Point(4, 22);
+            this.tabPageStart.Name = "tabPageStart";
+            this.tabPageStart.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageStart.Size = new System.Drawing.Size(1172, 474);
+            this.tabPageStart.TabIndex = 7;
+            this.tabPageStart.Text = "Start";
+            this.tabPageStart.UseVisualStyleBackColor = true;
+          
+            // 
+            // btnStartCategories
+            // 
+            this.btnStartCategories.BackColor = System.Drawing.Color.Green;
+            this.btnStartCategories.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnStartCategories.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStartCategories.Location = new System.Drawing.Point(502, 6);
+            this.btnStartCategories.Name = "btnStartCategories";
+            this.btnStartCategories.Size = new System.Drawing.Size(76, 37);
+            this.btnStartCategories.TabIndex = 1;
+            this.btnStartCategories.Text = "Štart";
+            this.btnStartCategories.UseVisualStyleBackColor = false;
+            this.btnStartCategories.Click += new System.EventHandler(this.btnStartCategories_Click);
+            // 
+            // dgrStartCategories
+            // 
+            this.dgrStartCategories.AllowDrop = true;
+            this.dgrStartCategories.AllowUserToAddRows = false;
+            this.dgrStartCategories.AllowUserToDeleteRows = false;
+            this.dgrStartCategories.AllowUserToOrderColumns = true;
+            this.dgrStartCategories.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dgrStartCategories.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dgrStartCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgrStartCategories.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
+            this.dgrStartCategories.Location = new System.Drawing.Point(0, 46);
+            this.dgrStartCategories.MultiSelect = false;
+            this.dgrStartCategories.Name = "dgrStartCategories";
+            this.dgrStartCategories.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgrStartCategories.Size = new System.Drawing.Size(578, 452);
+            this.dgrStartCategories.TabIndex = 0;
+            // 
             // tmrProcessRFID
             // 
             this.tmrProcessRFID.Interval = 50;
             this.tmrProcessRFID.Tick += new System.EventHandler(this.tmrProcessRFID_Tick);
+            // 
+            // dgrCategoriesTime
+            // 
+            this.dgrCategoriesTime.AllowDrop = true;
+            this.dgrCategoriesTime.AllowUserToAddRows = false;
+            this.dgrCategoriesTime.AllowUserToDeleteRows = false;
+            this.dgrCategoriesTime.AllowUserToOrderColumns = true;
+            this.dgrCategoriesTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgrCategoriesTime.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dgrCategoriesTime.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgrCategoriesTime.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
+            this.dgrCategoriesTime.Location = new System.Drawing.Point(617, 46);
+            this.dgrCategoriesTime.MultiSelect = false;
+            this.dgrCategoriesTime.Name = "dgrCategoriesTime";
+            this.dgrCategoriesTime.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgrCategoriesTime.Size = new System.Drawing.Size(552, 428);
+            this.dgrCategoriesTime.TabIndex = 2;
+            // 
+            // label21
+            // 
+            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label21.Location = new System.Drawing.Point(614, 19);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(140, 13);
+            this.label21.TabIndex = 3;
+            this.label21.Text = "Odštartované kategórie";
+            // 
+            // label22
+            // 
+            this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label22.Location = new System.Drawing.Point(3, 16);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(154, 13);
+            this.label22.TabIndex = 4;
+            this.label22.Text = "Neodštartované kategórie";
             // 
             // Form1
             // 
@@ -1084,9 +1192,12 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrFromStartNumber)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgStartNumbers)).EndInit();
             this.tabResults.ResumeLayout(false);
+            this.tabPageStart.ResumeLayout(false);
+            this.tabPageStart.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrStartCategories)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrCategoriesTime)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1177,6 +1288,12 @@
         private System.Windows.Forms.Button btnDeleteClub;
         private System.Windows.Forms.Button btnClubSave;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TabPage tabPageStart;
+        private System.Windows.Forms.Button btnStartCategories;
+        private System.Windows.Forms.DataGridView dgrStartCategories;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.DataGridView dgrCategoriesTime;
+        private System.Windows.Forms.Label label22;
     }
 }
 

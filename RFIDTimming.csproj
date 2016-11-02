@@ -98,6 +98,7 @@
     <Compile Include="Models\Mapping\E_RunnersMap.cs" />
     <Compile Include="Models\Mapping\R_TagReadMap.cs" />
     <Compile Include="Models\ResultLap.cs" />
+    <Compile Include="Models\CategoryStart.cs" />
     <Compile Include="Models\RFIDRead.cs" />
     <Compile Include="Models\R_TagRead.cs" />
     <Compile Include="Models\timmingContext.cs" />

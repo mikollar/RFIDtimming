@@ -38,6 +38,25 @@ namespace RFIDTimming
 
             dtmEventDate.CustomFormat = "dd.MM.yyyy H:mm:ss";
 
+
+         //   dgrStartCategories
+            //DataGridViewCheckBoxColumn doWork = new DataGridViewCheckBoxColumn();
+            //doWork.HeaderText = "Odštartovať";
+            //doWork.FalseValue = "0";
+            //doWork.TrueValue = "1";
+            //doWork.Name = "Start";
+            //dgrStartCategories.Columns.Insert(0, doWork);
+
+            //DataGridViewLinkColumn doWork2 = new DataGridViewLinkColumn();
+            //doWork2.HeaderText = "Kategória kod";
+            //doWork2.Name = "CategoryID";
+            //dgrStartCategories.Columns.Insert(1, doWork2);
+
+            //DataGridViewLinkColumn doWork1 = new DataGridViewLinkColumn();
+            //doWork1.HeaderText = "Kategória";
+            //doWork1.Name = "CategoryName";
+            //dgrStartCategories.Columns.Insert(2, doWork1);
+
             // tab selected event
             tabs.Selected += Tabs_Selected;
 
@@ -143,6 +162,17 @@ namespace RFIDTimming
                 {
                 }
             }
+            if (e.TabPage == tabPageStart)
+            {
+                if (activeEvent != null)
+                {
+                    this.ReloadStartCategories();
+                }
+                else
+                {
+                }
+            }
+
         }
 
         /// <summary>
@@ -155,6 +185,7 @@ namespace RFIDTimming
             tabs.TabPages.Remove(tabPageClubs);
             tabs.TabPages.Remove(tabPageCompetition);
             tabs.TabPages.Remove(tabPageAddEvent);
+            tabs.TabPages.Remove(tabPageStart);
 
             // event is opened
             // event is opened
@@ -164,6 +195,7 @@ namespace RFIDTimming
                 tabs.TabPages.Insert(1, tabPageRunners);
                 tabs.TabPages.Insert(2, tabPageCategories);
                 tabs.TabPages.Insert(3, tabPageClubs);
+                tabs.TabPages.Insert(4, tabPageStart);
 
                 btnCloseEvent.Show();
 
@@ -235,6 +267,73 @@ namespace RFIDTimming
 
         #endregion
 
+        #region StartCategories
+
+        /// <summary>
+        /// Reload start categories
+        /// </summary>
+        private void ReloadStartCategories()
+        {
+            var activeEvent = evHandler.GetActiveEvent();
+
+            if (activeEvent != null)
+            {
+                dgrStartCategories.DataSource = new CategoriesHandler(activeEvent, evHandler.Context).GetCategories().Where(x => x.OffsetStartTime < 0)
+                                                .Select(s => new CategoryStart
+                                                {
+                                                    Start = true,
+                                                    CategoryID = s.CategoryID,
+                                                    CategoryName = s.CategoryName
+                                                }).ToList();
+                dgrStartCategories.Refresh();
+
+                dgrCategoriesTime.DataSource = new CategoriesHandler(evHandler.GetActiveEvent(), evHandler.Context).GetCategories().Where(x => x.OffsetStartTime > -1)
+                                    .Select(s => new CategoryTime
+                                    {
+                                        CategoryID = s.CategoryID,
+                                        CategoryName = s.CategoryName,
+                                        Time = (DateTime.Now - activeEvent.EventDateTime) - TimeSpan.FromSeconds(s.OffsetStartTime)
+                                    }).ToList();
+                dgrCategoriesTime.Refresh();
+            }
+        }
+
+        /// <summary>
+        /// Start categories button click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnStartCategories_Click(object sender, EventArgs e)
+        {
+            var activeEvent = evHandler.GetActiveEvent();
+
+            if (activeEvent != null)
+            {
+                List<string> selectedCategories = new List<string>();
+                foreach (DataGridViewRow row in dgrStartCategories.Rows)
+                {
+                    if ((bool)row.Cells["Start"].Value == true)
+                    {
+                        selectedCategories.Add((string)row.Cells["CategoryID"].Value);
+                    }
+                }
+
+                // calculate start offset
+                var startOffset = (int)(DateTime.Now - activeEvent.EventDateTime).TotalSeconds;
+                // start categories
+                new CategoriesHandler(evHandler.GetActiveEvent(), evHandler.Context).StartCategories(selectedCategories, startOffset);
+                // reload start grid
+                this.ReloadStartCategories();
+
+                MessageBox.Show("Kategorie odstartovane " + DateTime.Now.ToLongTimeString(),
+                               "Start",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Information,
+                               MessageBoxDefaultButton.Button1);
+            }
+        }
+        #endregion
+
         #region Categories
         /// <summary>
         /// Reload categories
@@ -265,6 +364,8 @@ namespace RFIDTimming
         {
             tbxCatCatName.Text = string.Empty;
             tbxCatCode.Text = string.Empty;
+            numCatStartOffset.Value = -1;
+
             lstCategories.ClearSelected();
         }
 
@@ -381,13 +482,14 @@ namespace RFIDTimming
 
                     if (rfidRead.Tag != null)
                     {
+                        System.Media.SystemSounds.Exclamation.Play();
                         tbxReadTag.Text = rfidRead.Tag.TagID;
                         tbxReadTime.Text = rfidRead.Tag.ReadTime.ToString("h\\:mm\\:ss");
                     }
 
                     if (rfidRead.Runner != null)
                     {
-                        System.Media.SystemSounds.Question.Play();
+                        System.Media.SystemSounds.Exclamation.Play();
                         tbxReadRunner.Text = rfidRead.Runner.Surname + " " + rfidRead.Runner.Firstname;
                         tbxReadTime.Text = rfidRead.Tag.ReadTime.ToString("h\\:mm\\:ss");
 
@@ -403,9 +505,14 @@ namespace RFIDTimming
                             info = rfidRead.Lap.ToString() + ". KOLO";
                         }
 
-                        if (rfidRead.Finish == true || rfidRead.Lap > 0)
+                        if (rfidRead.Finish == true && rfidRead.Runner.ResultTime.HasValue)
                         {
-                            this.ReadedNumbers.Add(rfidRead.Tag.ReadTime.ToString("h\\:mm\\:ss") + " \t " + rfidRead.StartNumber.PadLeft(5, ' ') + " \t" + info);
+                            this.ReadedNumbers.Add(rfidRead.Runner.ResultTime.Value.ToString("h\\:mm\\:ss") + " \t " + rfidRead.StartNumber.PadLeft(5, ' ') + " \t" + info);
+                            lstReadedNumbers.DataSource = this.ReadedNumbers.OrderByDescending(o => o).ToList();
+                        }
+                        else if (rfidRead.Lap > 0 && rfidRead.LapTime.HasValue)
+                        {
+                            this.ReadedNumbers.Add(rfidRead.LapTime.Value.ToString("h\\:mm\\:ss") + " \t " + rfidRead.StartNumber.PadLeft(5, ' ') + " \t" + info);
                             lstReadedNumbers.DataSource = this.ReadedNumbers.OrderByDescending(o => o).ToList();
                         }
 
@@ -601,6 +708,8 @@ namespace RFIDTimming
             if(cmbRunnerClub.SelectedItem != null)
             {
                 clubID = ((E_Club)cmbRunnerClub.SelectedItem).ClubID;
+
+                if (clubID < 1) clubID = null;
             }
 
             E_Runners createdRunner = null;
@@ -654,7 +763,20 @@ namespace RFIDTimming
         private void ReloadRunnerClubs()
         {
             cmbRunnerClub.DisplayMember = "Name";
-            cmbRunnerClub.DataSource = new RunnersHandler(evHandler.GetActiveEvent(), evHandler.Context).GetClubs();
+            var activeEvent = evHandler.GetActiveEvent();
+            if (activeEvent != null)
+            {
+                var clubs = new RunnersHandler(activeEvent, evHandler.Context).GetClubs();
+                // add empty club
+                clubs.Insert(0, new E_Club
+                {
+                    ClubID = 0,
+                    EventID = activeEvent.EventID,
+                    Name = "",
+                });
+
+                cmbRunnerClub.DataSource = clubs;
+            }
         }
 
         /// <summary>
@@ -714,5 +836,6 @@ namespace RFIDTimming
                 var columns = (item ?? "").Split('\t');
             }
         }
+
     }
 }

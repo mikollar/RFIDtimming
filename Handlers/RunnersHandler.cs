@@ -73,6 +73,8 @@ namespace RFIDTimming.Handlers
             // start transaction
             using (var dbContextTransaction = this.Context.Database.BeginTransaction())
             {
+                club = (club ?? "").Trim();
+
                 // create club if not exist
                 if ((clubID == null || clubID == 0) && !string.IsNullOrEmpty(club))
                 {

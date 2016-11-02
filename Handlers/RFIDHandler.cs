@@ -125,7 +125,8 @@ namespace RFIDTimming.Handlers
                                                  .GroupBy(grp => grp.Epc)
                                                  .Select(s => new
                                                  {
-                                                     FirstSeenTime = s.Min(m => m.FirstSeenTime),
+                                                     FirstSeenTime = DateTime.Now,
+                                                     // FirstSeenTime = s.Min(m => m.FirstSeenTime),
                                                      Epc = s.Min(m => m.Epc),
                                                      Tid = s.Min(m => m.Tid),
                                                      Anntena = s.Min(m => m.AntennaPortNumber)
@@ -139,7 +140,7 @@ namespace RFIDTimming.Handlers
 
                 var readedTag = new R_TagRead
                 {
-                    ReadTime = tag.FirstSeenTime.LocalDateTime.TimeOfDay,
+                    ReadTime = tag.FirstSeenTime.TimeOfDay,
                     TagID = tag.Epc.ToString(),
                     UserData = tag.Tid.ToString(),
                     Antenna = tag.Anntena,
@@ -185,10 +186,10 @@ namespace RFIDTimming.Handlers
 
                         // move to next number
                         this.FirstStartNumber++;
-                        returnRead.NextAssignNumber = this.FirstStartNumber;
+                       
                     }
 
-                    
+                    returnRead.NextAssignNumber = this.FirstStartNumber;
                     #endregion
                 }
                 // read tag an write to table
@@ -217,7 +218,8 @@ namespace RFIDTimming.Handlers
                                 runnerCat = categories.FirstOrDefault(x => x.EventID == this.ActiveEventID && x.CategoryID == returnRead.Runner.CategoryID);
                             }
 
-                            if (returnRead.Runner != null && runnerCat != null)
+                            // if category has start time
+                            if (returnRead.Runner != null && runnerCat != null && runnerCat.OffsetStartTime > -1)
                             {
                                 // calculate category start time
                                 var categoryStartTime = this.ActiveEvent.EventDateTime.TimeOfDay + TimeSpan.FromSeconds(runnerCat.OffsetStartTime);
@@ -245,6 +247,7 @@ namespace RFIDTimming.Handlers
                                         if(lapsCount <= runnerCat.Laps)
                                         {
                                             returnRead.Lap = lapsCount;
+                                            returnRead.LapTime = readedTag.ReadTime - categoryStartTime;
                                         }
 
                                         // calculate runner result time
@@ -274,7 +277,7 @@ namespace RFIDTimming.Handlers
                     this.ReadRFIDCallback(returnRead);
                 }
 
-                Console.WriteLine(tag.FirstSeenTime.LocalDateTime.ToShortTimeString() + " " + tag.Epc + " ");
+                Console.WriteLine(tag.FirstSeenTime.ToShortTimeString() + " " + tag.Epc + " ");
             }
         }
         
