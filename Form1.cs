@@ -19,6 +19,8 @@ namespace RFIDTimming
         EventsHandler evHandler = null;
         RFIDHandler rfidHandler = null;
 
+        List<E_Category> startedCategoriesList = new List<E_Category>();
+
         List<string> ReadedNumbers = new List<string>();
 
         /// <summary>
@@ -93,6 +95,9 @@ namespace RFIDTimming
         /// <param name="e"></param>
         private void Tabs_Selected(object sender, TabControlEventArgs e)
         {
+            // stop timer to refresh started categories time
+            tmrStartedCategRefresh.Enabled = false;
+
             // get active event
             var activeEvent = evHandler.GetActiveEvent();
 
@@ -166,6 +171,9 @@ namespace RFIDTimming
             {
                 if (activeEvent != null)
                 {
+                    // run timer to refresh started categories time
+                    tmrStartedCategRefresh.Enabled = true;
+
                     this.ReloadStartCategories();
                 }
                 else
@@ -287,15 +295,40 @@ namespace RFIDTimming
                                                 }).ToList();
                 dgrStartCategories.Refresh();
 
-                dgrCategoriesTime.DataSource = new CategoriesHandler(evHandler.GetActiveEvent(), evHandler.Context).GetCategories().Where(x => x.OffsetStartTime > -1)
-                                    .Select(s => new CategoryTime
-                                    {
-                                        CategoryID = s.CategoryID,
-                                        CategoryName = s.CategoryName,
-                                        Time = (DateTime.Now - activeEvent.EventDateTime) - TimeSpan.FromSeconds(s.OffsetStartTime)
-                                    }).ToList();
-                dgrCategoriesTime.Refresh();
+                // get started categories
+                this.startedCategoriesList = new CategoriesHandler(evHandler.GetActiveEvent(), evHandler.Context).GetCategories().Where(x => x.OffsetStartTime > -1).ToList();
+
             }
+        }
+
+        /// <summary>
+        /// Timer event , stardet categories refresh
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tmrStartedCategRefresh_Tick(object sender, EventArgs e)
+        {
+             var activeEvent = evHandler.GetActiveEvent();
+
+             if (activeEvent != null)
+             {
+                 this.BeginInvoke(new MethodInvoker(delegate
+                                       {
+                                           dgrCategoriesTime.DataSource = this.startedCategoriesList.OrderByDescending(o => o.OffsetStartTime).ThenBy(o => o.CategoryName)
+                                                              .Select(s => new CategoryTime
+                                                              {
+                                                                  CategoryID = s.CategoryID,
+                                                                  CategoryName = s.CategoryName,
+                                                                  Time = ((DateTime.Now - activeEvent.EventDateTime) - TimeSpan.FromSeconds(s.OffsetStartTime)).ToString("h\\:mm\\:ss")
+                                                              }).ToList();
+
+                                           dgrCategoriesTime.Refresh();
+                                       }));
+             }
+             else
+             {
+                 tmrStartedCategRefresh.Enabled = false;
+             }
         }
 
         /// <summary>
@@ -836,6 +869,8 @@ namespace RFIDTimming
                 var columns = (item ?? "").Split('\t');
             }
         }
+
+      
 
     }
 }

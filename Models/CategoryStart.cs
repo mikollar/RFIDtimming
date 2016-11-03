@@ -21,7 +21,7 @@ namespace RFIDTimming.Models
 
         public string CategoryName { get; set; }
 
-        public TimeSpan Time { get; set; }
+        public string Time { get; set; }
     }
 
 }

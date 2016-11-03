@@ -113,12 +113,13 @@
             this.tabResults = new System.Windows.Forms.TabPage();
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.tabPageStart = new System.Windows.Forms.TabPage();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.dgrCategoriesTime = new System.Windows.Forms.DataGridView();
             this.btnStartCategories = new System.Windows.Forms.Button();
             this.dgrStartCategories = new System.Windows.Forms.DataGridView();
             this.tmrProcessRFID = new System.Windows.Forms.Timer(this.components);
-            this.dgrCategoriesTime = new System.Windows.Forms.DataGridView();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
+            this.tmrStartedCategRefresh = new System.Windows.Forms.Timer(this.components);
             this.tabs.SuspendLayout();
             this.tabPageCompetition.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -141,8 +142,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgStartNumbers)).BeginInit();
             this.tabResults.SuspendLayout();
             this.tabPageStart.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgrStartCategories)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrCategoriesTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrStartCategories)).BeginInit();
             this.SuspendLayout();
             // 
             // tabs
@@ -1021,6 +1022,7 @@
             // 
             this.dtgStartNumbers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.dtgStartNumbers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgStartNumbers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgStartNumbers.Location = new System.Drawing.Point(-4, 0);
             this.dtgStartNumbers.Name = "dtgStartNumbers";
@@ -1080,14 +1082,59 @@
             this.tabPageStart.TabIndex = 7;
             this.tabPageStart.Text = "Start";
             this.tabPageStart.UseVisualStyleBackColor = true;
-          
+            // 
+            // label22
+            // 
+            this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label22.Location = new System.Drawing.Point(3, 16);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(154, 13);
+            this.label22.TabIndex = 4;
+            this.label22.Text = "Neodštartované kategórie";
+            // 
+            // label21
+            // 
+            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label21.Location = new System.Drawing.Point(386, 16);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(140, 13);
+            this.label21.TabIndex = 3;
+            this.label21.Text = "Odštartované kategórie";
+            // 
+            // dgrCategoriesTime
+            // 
+            this.dgrCategoriesTime.AllowDrop = true;
+            this.dgrCategoriesTime.AllowUserToAddRows = false;
+            this.dgrCategoriesTime.AllowUserToDeleteRows = false;
+            this.dgrCategoriesTime.AllowUserToOrderColumns = true;
+            this.dgrCategoriesTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgrCategoriesTime.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgrCategoriesTime.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dgrCategoriesTime.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dgrCategoriesTime.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgrCategoriesTime.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgrCategoriesTime.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
+            this.dgrCategoriesTime.GridColor = System.Drawing.SystemColors.Control;
+            this.dgrCategoriesTime.Location = new System.Drawing.Point(389, 46);
+            this.dgrCategoriesTime.MultiSelect = false;
+            this.dgrCategoriesTime.Name = "dgrCategoriesTime";
+            this.dgrCategoriesTime.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dgrCategoriesTime.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgrCategoriesTime.ShowEditingIcon = false;
+            this.dgrCategoriesTime.Size = new System.Drawing.Size(777, 425);
+            this.dgrCategoriesTime.TabIndex = 2;
             // 
             // btnStartCategories
             // 
             this.btnStartCategories.BackColor = System.Drawing.Color.Green;
             this.btnStartCategories.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnStartCategories.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnStartCategories.Location = new System.Drawing.Point(502, 6);
+            this.btnStartCategories.Location = new System.Drawing.Point(285, 3);
             this.btnStartCategories.Name = "btnStartCategories";
             this.btnStartCategories.Size = new System.Drawing.Size(76, 37);
             this.btnStartCategories.TabIndex = 1;
@@ -1103,6 +1150,7 @@
             this.dgrStartCategories.AllowUserToOrderColumns = true;
             this.dgrStartCategories.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.dgrStartCategories.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgrStartCategories.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgrStartCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrStartCategories.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
@@ -1110,7 +1158,7 @@
             this.dgrStartCategories.MultiSelect = false;
             this.dgrStartCategories.Name = "dgrStartCategories";
             this.dgrStartCategories.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgrStartCategories.Size = new System.Drawing.Size(578, 452);
+            this.dgrStartCategories.Size = new System.Drawing.Size(361, 425);
             this.dgrStartCategories.TabIndex = 0;
             // 
             // tmrProcessRFID
@@ -1118,45 +1166,9 @@
             this.tmrProcessRFID.Interval = 50;
             this.tmrProcessRFID.Tick += new System.EventHandler(this.tmrProcessRFID_Tick);
             // 
-            // dgrCategoriesTime
+            // tmrStartedCategRefresh
             // 
-            this.dgrCategoriesTime.AllowDrop = true;
-            this.dgrCategoriesTime.AllowUserToAddRows = false;
-            this.dgrCategoriesTime.AllowUserToDeleteRows = false;
-            this.dgrCategoriesTime.AllowUserToOrderColumns = true;
-            this.dgrCategoriesTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgrCategoriesTime.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dgrCategoriesTime.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgrCategoriesTime.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
-            this.dgrCategoriesTime.Location = new System.Drawing.Point(617, 46);
-            this.dgrCategoriesTime.MultiSelect = false;
-            this.dgrCategoriesTime.Name = "dgrCategoriesTime";
-            this.dgrCategoriesTime.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgrCategoriesTime.Size = new System.Drawing.Size(552, 428);
-            this.dgrCategoriesTime.TabIndex = 2;
-            // 
-            // label21
-            // 
-            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label21.Location = new System.Drawing.Point(614, 19);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(140, 13);
-            this.label21.TabIndex = 3;
-            this.label21.Text = "Odštartované kategórie";
-            // 
-            // label22
-            // 
-            this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label22.Location = new System.Drawing.Point(3, 16);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(154, 13);
-            this.label22.TabIndex = 4;
-            this.label22.Text = "Neodštartované kategórie";
+            this.tmrStartedCategRefresh.Tick += new System.EventHandler(this.tmrStartedCategRefresh_Tick);
             // 
             // Form1
             // 
@@ -1196,8 +1208,8 @@
             this.tabResults.ResumeLayout(false);
             this.tabPageStart.ResumeLayout(false);
             this.tabPageStart.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgrStartCategories)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrCategoriesTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrStartCategories)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1294,6 +1306,7 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.DataGridView dgrCategoriesTime;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Timer tmrStartedCategRefresh;
     }
 }
 
