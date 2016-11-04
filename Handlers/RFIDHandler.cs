@@ -223,6 +223,8 @@ namespace RFIDTimming.Handlers
                             {
                                 // calculate category start time
                                 var categoryStartTime = this.ActiveEvent.EventDateTime.TimeOfDay + TimeSpan.FromSeconds(runnerCat.OffsetStartTime);
+                                // find first possible lap time for current tag
+                                var firstPossibleLapTime = categoryStartTime + TimeSpan.FromSeconds(runnerCat.MinLapTime);
 
                                 // if runner has category, write tag read only if minimum time for lap elpased after previous tag read
                                 if (lastTag == null || runnerCat == null || ((DateTime.Now.TimeOfDay - lastTag.ReadTime).TotalSeconds > runnerCat.MinLapTime && categoryStartTime <= DateTime.Now.TimeOfDay))
@@ -233,10 +235,7 @@ namespace RFIDTimming.Handlers
                                         internalContext.R_TagRead.Add(readedTag);
                                         // save to DB
                                         internalContext.SaveChanges();
-
-                                        // find first possible lap time for current tag
-                                        var firstPossibleLapTime = categoryStartTime + TimeSpan.FromSeconds(runnerCat.MinLapTime);
-
+                                    
                                         // count laps, tag reads lates as category start time
                                         var lapsCount = internalContext.R_TagRead
                                                                         .AsNoTracking()
@@ -244,7 +243,7 @@ namespace RFIDTimming.Handlers
                                                                                     x.TagID == readedTag.TagID &&
                                                                                     x.ReadTime >= firstPossibleLapTime);
 
-                                        if(lapsCount <= runnerCat.Laps)
+                                        if(lapsCount < runnerCat.Laps)
                                         {
                                             returnRead.Lap = lapsCount;
                                             returnRead.LapTime = readedTag.ReadTime - categoryStartTime;

@@ -35,23 +35,6 @@
             this.cmbEvents = new System.Windows.Forms.ComboBox();
             this.btnOpenEvent = new System.Windows.Forms.Button();
             this.tabPageRunners = new System.Windows.Forms.TabPage();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label19 = new System.Windows.Forms.Label();
-            this.cmbRunnerClub = new System.Windows.Forms.ComboBox();
-            this.tbxRunnerResultTime = new System.Windows.Forms.MaskedTextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.tbxRunnerSearch = new System.Windows.Forms.TextBox();
-            this.lstRunners = new System.Windows.Forms.ListBox();
-            this.tbxRunnerStartNumber = new System.Windows.Forms.TextBox();
-            this.lbl1 = new System.Windows.Forms.Label();
-            this.btnDeleteRunner = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.tbxRunnerName = new System.Windows.Forms.TextBox();
-            this.btnRunnerSave = new System.Windows.Forms.Button();
-            this.cmbRunnerCategory = new System.Windows.Forms.ComboBox();
-            this.btnNewRunner = new System.Windows.Forms.Button();
             this.tabPageCategories = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -120,11 +103,12 @@
             this.dgrStartCategories = new System.Windows.Forms.DataGridView();
             this.tmrProcessRFID = new System.Windows.Forms.Timer(this.components);
             this.tmrStartedCategRefresh = new System.Windows.Forms.Timer(this.components);
+            this.lstRunnerRFID = new System.Windows.Forms.ListBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.tabs.SuspendLayout();
             this.tabPageCompetition.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.tabPageRunners.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.tabPageCategories.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCatLaps)).BeginInit();
@@ -144,6 +128,7 @@
             this.tabPageStart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrCategoriesTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrStartCategories)).BeginInit();
+            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabs
@@ -209,7 +194,7 @@
             // 
             // tabPageRunners
             // 
-            this.tabPageRunners.Controls.Add(this.groupBox6);
+            this.tabPageRunners.Controls.Add(this.groupBox9);
             this.tabPageRunners.Location = new System.Drawing.Point(4, 22);
             this.tabPageRunners.Name = "tabPageRunners";
             this.tabPageRunners.Padding = new System.Windows.Forms.Padding(3);
@@ -217,189 +202,6 @@
             this.tabPageRunners.TabIndex = 1;
             this.tabPageRunners.Text = "Bezci";
             this.tabPageRunners.UseVisualStyleBackColor = true;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox6.BackColor = System.Drawing.Color.Gainsboro;
-            this.groupBox6.Controls.Add(this.button1);
-            this.groupBox6.Controls.Add(this.label19);
-            this.groupBox6.Controls.Add(this.cmbRunnerClub);
-            this.groupBox6.Controls.Add(this.tbxRunnerResultTime);
-            this.groupBox6.Controls.Add(this.label18);
-            this.groupBox6.Controls.Add(this.tbxRunnerSearch);
-            this.groupBox6.Controls.Add(this.lstRunners);
-            this.groupBox6.Controls.Add(this.tbxRunnerStartNumber);
-            this.groupBox6.Controls.Add(this.lbl1);
-            this.groupBox6.Controls.Add(this.btnDeleteRunner);
-            this.groupBox6.Controls.Add(this.label15);
-            this.groupBox6.Controls.Add(this.label17);
-            this.groupBox6.Controls.Add(this.tbxRunnerName);
-            this.groupBox6.Controls.Add(this.btnRunnerSave);
-            this.groupBox6.Controls.Add(this.cmbRunnerCategory);
-            this.groupBox6.Controls.Add(this.btnNewRunner);
-            this.groupBox6.Location = new System.Drawing.Point(3, 6);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(661, 468);
-            this.groupBox6.TabIndex = 42;
-            this.groupBox6.TabStop = false;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(555, 429);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 45;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label19.Location = new System.Drawing.Point(268, 126);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(32, 13);
-            this.label19.TabIndex = 44;
-            this.label19.Text = "Klub";
-            // 
-            // cmbRunnerClub
-            // 
-            this.cmbRunnerClub.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cmbRunnerClub.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbRunnerClub.CausesValidation = false;
-            this.cmbRunnerClub.Cursor = System.Windows.Forms.Cursors.Default;
-            this.cmbRunnerClub.FormattingEnabled = true;
-            this.cmbRunnerClub.Location = new System.Drawing.Point(346, 123);
-            this.cmbRunnerClub.Name = "cmbRunnerClub";
-            this.cmbRunnerClub.Size = new System.Drawing.Size(284, 21);
-            this.cmbRunnerClub.TabIndex = 4;
-            // 
-            // tbxRunnerResultTime
-            // 
-            this.tbxRunnerResultTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tbxRunnerResultTime.Location = new System.Drawing.Point(346, 150);
-            this.tbxRunnerResultTime.Mask = "00:00:00";
-            this.tbxRunnerResultTime.Name = "tbxRunnerResultTime";
-            this.tbxRunnerResultTime.Size = new System.Drawing.Size(55, 21);
-            this.tbxRunnerResultTime.TabIndex = 5;
-            this.tbxRunnerResultTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label18.Location = new System.Drawing.Point(268, 46);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(34, 13);
-            this.label18.TabIndex = 39;
-            this.label18.Text = "St.c.";
-            // 
-            // tbxRunnerSearch
-            // 
-            this.tbxRunnerSearch.Location = new System.Drawing.Point(3, 17);
-            this.tbxRunnerSearch.Name = "tbxRunnerSearch";
-            this.tbxRunnerSearch.Size = new System.Drawing.Size(257, 20);
-            this.tbxRunnerSearch.TabIndex = 41;
-            // 
-            // lstRunners
-            // 
-            this.lstRunners.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lstRunners.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lstRunners.FormattingEnabled = true;
-            this.lstRunners.ItemHeight = 15;
-            this.lstRunners.Location = new System.Drawing.Point(3, 43);
-            this.lstRunners.Name = "lstRunners";
-            this.lstRunners.Size = new System.Drawing.Size(257, 409);
-            this.lstRunners.TabIndex = 20;
-            this.lstRunners.SelectedIndexChanged += new System.EventHandler(this.lstRunners_SelectedIndexChanged);
-            // 
-            // tbxRunnerStartNumber
-            // 
-            this.tbxRunnerStartNumber.Location = new System.Drawing.Point(346, 43);
-            this.tbxRunnerStartNumber.Name = "tbxRunnerStartNumber";
-            this.tbxRunnerStartNumber.Size = new System.Drawing.Size(55, 20);
-            this.tbxRunnerStartNumber.TabIndex = 1;
-            this.tbxRunnerStartNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lbl1
-            // 
-            this.lbl1.AutoSize = true;
-            this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lbl1.Location = new System.Drawing.Point(268, 72);
-            this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(38, 13);
-            this.lbl1.TabIndex = 18;
-            this.lbl1.Text = "Meno";
-            // 
-            // btnDeleteRunner
-            // 
-            this.btnDeleteRunner.Location = new System.Drawing.Point(271, 198);
-            this.btnDeleteRunner.Name = "btnDeleteRunner";
-            this.btnDeleteRunner.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteRunner.TabIndex = 8;
-            this.btnDeleteRunner.Text = "Vymaž";
-            this.btnDeleteRunner.UseVisualStyleBackColor = true;
-            this.btnDeleteRunner.Click += new System.EventHandler(this.btnDeleteRunner_Click);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label15.Location = new System.Drawing.Point(268, 155);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(28, 13);
-            this.label15.TabIndex = 34;
-            this.label15.Text = "Cas";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label17.Location = new System.Drawing.Point(268, 98);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(61, 13);
-            this.label17.TabIndex = 33;
-            this.label17.Text = "Kategoria";
-            // 
-            // tbxRunnerName
-            // 
-            this.tbxRunnerName.Location = new System.Drawing.Point(346, 69);
-            this.tbxRunnerName.Name = "tbxRunnerName";
-            this.tbxRunnerName.Size = new System.Drawing.Size(284, 20);
-            this.tbxRunnerName.TabIndex = 2;
-            // 
-            // btnRunnerSave
-            // 
-            this.btnRunnerSave.Location = new System.Drawing.Point(555, 198);
-            this.btnRunnerSave.Name = "btnRunnerSave";
-            this.btnRunnerSave.Size = new System.Drawing.Size(75, 23);
-            this.btnRunnerSave.TabIndex = 6;
-            this.btnRunnerSave.Text = "Ulož";
-            this.btnRunnerSave.UseVisualStyleBackColor = true;
-            this.btnRunnerSave.Click += new System.EventHandler(this.btnRunnerSave_Click);
-            // 
-            // cmbRunnerCategory
-            // 
-            this.cmbRunnerCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRunnerCategory.FormattingEnabled = true;
-            this.cmbRunnerCategory.Location = new System.Drawing.Point(346, 95);
-            this.cmbRunnerCategory.Name = "cmbRunnerCategory";
-            this.cmbRunnerCategory.Size = new System.Drawing.Size(284, 21);
-            this.cmbRunnerCategory.TabIndex = 3;
-            // 
-            // btnNewRunner
-            // 
-            this.btnNewRunner.Location = new System.Drawing.Point(463, 198);
-            this.btnNewRunner.Name = "btnNewRunner";
-            this.btnNewRunner.Size = new System.Drawing.Size(75, 23);
-            this.btnNewRunner.TabIndex = 7;
-            this.btnNewRunner.Text = "Nový";
-            this.btnNewRunner.UseVisualStyleBackColor = true;
-            this.btnNewRunner.Click += new System.EventHandler(this.btnNewRunner_Click);
             // 
             // tabPageCategories
             // 
@@ -1170,6 +972,31 @@
             // 
             this.tmrStartedCategRefresh.Tick += new System.EventHandler(this.tmrStartedCategRefresh_Tick);
             // 
+            // lstRunnerRFID
+            // 
+            this.lstRunnerRFID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lstRunnerRFID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lstRunnerRFID.FormattingEnabled = true;
+            this.lstRunnerRFID.ItemHeight = 15;
+            this.lstRunnerRFID.Location = new System.Drawing.Point(6, 17);
+            this.lstRunnerRFID.Name = "lstRunnerRFID";
+            this.lstRunnerRFID.Size = new System.Drawing.Size(482, 214);
+            this.lstRunnerRFID.TabIndex = 46;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox9.BackColor = System.Drawing.Color.LightGray;
+            this.groupBox9.Controls.Add(this.lstRunnerRFID);
+            this.groupBox9.Location = new System.Drawing.Point(670, 6);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(494, 468);
+            this.groupBox9.TabIndex = 47;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "RFID";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1177,14 +1004,12 @@
             this.ClientSize = new System.Drawing.Size(1180, 500);
             this.Controls.Add(this.tabs);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "RFID";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabs.ResumeLayout(false);
             this.tabPageCompetition.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.tabPageRunners.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.tabPageCategories.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
@@ -1210,6 +1035,7 @@
             this.tabPageStart.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrCategoriesTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrStartCategories)).EndInit();
+            this.groupBox9.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1264,20 +1090,8 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox tbxReadTime;
         private System.Windows.Forms.Label lblReadMessage;
-        private System.Windows.Forms.ListBox lstRunners;
-        private System.Windows.Forms.TextBox tbxRunnerName;
-        private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.ComboBox cmbRunnerCategory;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button btnNewRunner;
-        private System.Windows.Forms.Button btnDeleteRunner;
-        private System.Windows.Forms.Button btnRunnerSave;
-        private System.Windows.Forms.TextBox tbxRunnerSearch;
-        private System.Windows.Forms.TextBox tbxRunnerStartNumber;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label lblStartNumber;
         private System.Windows.Forms.TabPage tabResults;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
@@ -1287,11 +1101,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.ListBox lstReadedNumbers;
-        private System.Windows.Forms.MaskedTextBox tbxRunnerResultTime;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.ComboBox cmbRunnerClub;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ListBox lstClubs;
@@ -1299,7 +1109,6 @@
         private System.Windows.Forms.Button btnNewClub;
         private System.Windows.Forms.Button btnDeleteClub;
         private System.Windows.Forms.Button btnClubSave;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TabPage tabPageStart;
         private System.Windows.Forms.Button btnStartCategories;
         private System.Windows.Forms.DataGridView dgrStartCategories;
@@ -1307,6 +1116,8 @@
         private System.Windows.Forms.DataGridView dgrCategoriesTime;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Timer tmrStartedCategRefresh;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.ListBox lstRunnerRFID;
     }
 }
 
